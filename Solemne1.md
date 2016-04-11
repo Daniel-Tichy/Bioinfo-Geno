@@ -99,7 +99,7 @@ Rep. 6, 18408; doi: 10.1038/srep18408 (2016).
 
 15.-Aziz, R. K., et al. 2008. The RAST server: rapid annotations using subsystems technology. BMC Genomics 9:75
 
-16.-Markowitz, V. M. et al. IMG ER: a system for microbial genome annotation expert review and curation. Bioinformatics 25(17),22712278, doi: 10.1093/bioinformatics/btp393 (2009).
+16.-Markowitz, V. M. et al. IMG ER: a system for microbial genome annotation expert review and curation. Bioinformatics 25(17),2271.2278, doi: 10.1093/bioinformatics/btp393 (2009).
 
 
 
