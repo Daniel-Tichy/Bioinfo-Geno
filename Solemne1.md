@@ -49,6 +49,7 @@ se deteminará si las enzimas participes de la fermentación ABE están codifica
 Tras la aplicación del protocolo de toma de muestras, cultivo y aislación espero obtener al menos 3 bacterias distintas fenotipicamente para enfrentarlas al desafío de butanol, de este espero obtener resultados similares a los obtenidos en la figura 1 
 
 ![Image of Figura 1](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/figura1.png)
+
 Figura 1: Efectos de la adición de butanol a cultivos crecidos de Bacteria 1, Bacteria 2, Bacteria 3 cuantificado mediante conteo de Células viable (CFU)
 El Butanol fue agregado a cultivos en la mitad de la fas exponencial en contraciónes %(peso/volumen) de 0(diamantes negros), 0,25 (cuadrados blancos), 0,5 (triangulos negros), 0,75(circulos blancos), 1,0 (circulos negros),1,25(triangulos negros), 1,5(cuadrados negros) y 2,0(diamantes blancos)
 el ensayo fue llevado a cabo en triplicado y las barras de error representan la desviación estandar.
