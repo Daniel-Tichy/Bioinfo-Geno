@@ -46,6 +46,8 @@ Luego se usará el pipeline de anotación RAST(15) y se asignarán funciones y s
 se deteminará si las enzimas participes de la fermentación ABE están codificadas por los grupos previamente determinados.
 
 ##  Resultados Esperados 
+
+####Cultivo y aislamiento. 
 Tras la aplicación del protocolo de toma de muestras, cultivo y aislación espero obtener al menos 3 bacterias distintas fenotipicamente para enfrentarlas al desafío de butanol, de este espero obtener resultados similares a los obtenidos en la figura 1 
 
 ![Image of Figura 1](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/figura1.png)
@@ -54,6 +56,7 @@ Figura 1: Efectos de la adición de butanol a cultivos crecidos de Bacteria 1, B
 El Butanol fue agregado a cultivos en la mitad de la fas exponencial en contraciónes %(peso/volumen) de 0(diamantes negros), 0,25 (cuadrados blancos), 0,5 (triangulos negros), 0,75(circulos blancos), 1,0 (circulos negros),1,25(triangulos negros), 1,5(cuadrados negros) y 2,0(diamantes blancos)
 el ensayo fue llevado a cabo en triplicado y las barras de error representan la desviación estandar.
 
+####Secuenciación de genoma completo (WGS)
 Tras el análisis de los genes involucrados en la fermentación ABE espero poder mostrar una tabla resumen de este tipo 
 ![Image of Figura 2](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/figura2.jpg)
 Tabla comparativa de la bacteria secuenciada con los genes presentes en el orden clostridia. 
@@ -101,16 +104,3 @@ Rep. 6, 18408; doi: 10.1038/srep18408 (2016).
 15.-Aziz, R. K., et al. 2008. The RAST server: rapid annotations using subsystems technology. BMC Genomics 9:75
 
 16.-Markowitz, V. M. et al. IMG ER: a system for microbial genome annotation expert review and curation. Bioinformatics 25(17),2271.2278, doi: 10.1093/bioinformatics/btp393 (2009).
-
-
-
-
-
-
-
-
-
-
-
-
-
