@@ -29,7 +29,9 @@ In this assay I will argue the infeasibility to classify tailed phages trough a 
 ##  Development 
 1.-Classical taxonomic classification requiere orthologus sequences to infer relationships.   
 Genome-Based taxonomy is an hypotheses about the evolution of a group of sequences or a gene in particular therefore  requiere orthologus sequences to infer relationships, for example taxonomy based on the 16S rRNA gene (16S) is the most comprehensive and widely used in microbiology today(4) and therefore a taxonomic system based on a single locus analogous to the 16S rDNA in bacteria would be the most straightforward method for classifying phage based on their genomic sequence trough a classical taxonomic paradigm, ergo the formation of new lineages of organisms can be equated to the formation of two species from a single ancestral stock. But phage do not contain a ribosomal sequence that allows them to be classified in different genre and, to date, have not benefited from their own gene-based taxonomic system. Phages even it has been demonstrated that no single gene is found in all phage that can be used as the basis for a classification system. In 2002 Rohwer et al. compared all of the predicted phage encoded proteins (n = 3,981) from 105 completed genomes to each other by using BLASTP. The results are ilustrated in the Figure 1 as a rank abundance curve. There were 21,153 significant hits (E value of <0.1) between the predicted phage proteins. However, no single protein was found in all 105 genomes.    
-![Image of Figura 1](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/Figura 1.jpg)
+![Image of Figura 1](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/Figura 1S2.jpg)
+Rank abundance curve showing the number of significant similarities between each predicted phage protein against all other predicted phage proteins, as determined by BLASTP with an E-value cutoff of <0.1.
+
 
 
 
