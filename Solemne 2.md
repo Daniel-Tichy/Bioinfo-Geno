@@ -52,13 +52,12 @@ Recent recombination events giving rise to phage genome mosaicism
 
 Therefore an approach based on whole genome comparation is unviable. 
 
-4.-Classical taxonomic approaches can not classify tailed phages yet, phenetics approach can still be used 
+4.-Classical taxonomic approaches can not classify tailed phages yet, phenetics approach can still be used. 
+So the genetic diversity observed among bacteriophages remains a major obstacle for their identification and classification. but despite phage divergent and complex evolution, the thorough molecular analysis of a few paradigmatic tailed phages belonging to different morphological classes, such as Siphoviridae SPP1 and λ, Myoviridae T4 and Podoviridae P22 and Φ29, suggested that only a limited number of structural solutions are used in order to produce a functional virion(8) In 2014 Anne Lopes et al. determined that only a limited number of structural solutions are used in order to produce a functional virion. Developing in the process a webserver that automatically identifies proteins of the phage head-neck-tail module and assign phages to the most closely related cluster of phages called Virfam as shown in the Figure 4. 
 
+![Image of Figura 4](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/Figura 4S2.jpg)
 
-
-
-
-
+Identification of head-to-tail connection proteins in tailed bacteriophages and representativeness of the different phage Types. (A) Schematic representation of the bioinformatics pipeline used to identify remote homologs of head-to-tail connection proteins. Reference HMM profiles of known head-to-tail connection proteins (Table  1), as well as HMM profiles of each of the 28300 protein sequences contained in the Aclame database, were calculated using PSI-Blast (Step 1). These profiles were compared using HHsearch with a stringent probability threshold of 90%, and proteins detected as related to the reference head-to-tail connection proteins were iteratively used as probes in order to detect further homologs (Step 2). Inter-genes distances were then learned (Step 3) and applied as constraints to faithfully retrieve more remote homologs detected at a lower probability threshold (70%) (Step 4). (B) Components of the four neck Types are represented using the color code defined in Figure  1. Their mean inter-genes distances and standard errors were calculated as illustrated in Step 3 of panel A. (C) Quantitative distribution of the tailed bacteriophages of known morphology and recognized neck Type. Sector color code is the following: white, Siphoviridae of Type 1; light gray, Myoviridae of Type 1; dark gray, Myoviridae of Type 2; hatched, Podoviridae of Type 3; black, Podoviridae of Type 4. Dotted surfaces in Type 1 sectors correspond to phages with incomplete necks, for which one to two canonical components of the neck were not identified.
 
 
 ##  Conclusion 
@@ -78,3 +77,5 @@ Therefore an approach based on whole genome comparation is unviable.
 6.-Hendrix RW, Smith MC, Burns RN, Ford ME, Hatfull GF. Evolutionary relationships among diverse bacteriophages and prophages: all the world's a phage. Proc Natl Acad Sci U S A. 1999;96:2192–2197.
 
 7.-Bérard S, Chateau A, Pompidor N, Guertin P, Bergeron A, Swenson KM. Aligning the unalignable: bacteriophage whole genome alignments. BMC Bioinformatics. 2016;17:30. doi:10.1186/s12859-015-0869-5.
+
+8.-Veesler D, Cambillau C. A common evolutionary origin for tailed-bacteriophage functional modules and bacterial machineries. Microbiol Mol Biol Rev. 2011;75(3):423–433. doi: 10.1128/MMBR.00014-11.
