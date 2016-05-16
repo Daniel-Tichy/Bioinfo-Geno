@@ -2,7 +2,7 @@
 ___
 
 **Nombre: Daniel Tichy**  
-**Fecha:10/04/2016**
+**Fecha:15/05/2016**
 &nbsp;
 
 # Classical taxonomy is unable to classify tailed phages further than the family level. 
@@ -11,8 +11,7 @@ ___
 Bacteriophages are the predominant biological entity on the planet, there are more than 10^31 phage particles in the biosphere, 
 viral ecologists calculate that its orgins are distant and there are about 10^23 phage infections per second on a global scale,
 wich meas that the population is not only large and old but also highly dynamic(1).  
-The ongoing sequencing of phage genomes have produced and unprecedented amount of data, which is indispensable for understanding phage 
-biology. but despite of these advances, the taxonomic diversity of phages is just beginning to be assessed. 
+The ongoing sequencing of phage genomes have produced and unprecedented amount of data, which is indispensable for understanding phage biology. but despite of these advances, the taxonomic diversity of phages is just beginning to be assessed.
 The International Committee on the Taxonomy of Viruses (ICTV) recognizes several groups of phages, on the basis of shared morphological 
 traits, such as the shape, size, and structure of the virions, with some consideration of other molecular properties.
 For example, tailed bacteriophages with double-stranded DNA genomes attain the rank of the order Caudovirales and are divided into 
@@ -25,24 +24,20 @@ identified robustly.These organisms—through any one of a number of mechanisms�
 Importantly, the formation of new lineages of organisms can be equated to the formation of two species from a single ancestral stock.(3)
 Today its necesary to divide finely taxonomy for the purpose of understanding bacteriophage biology with the objective of developing 
 tools from these. It is clear that placing an organism into a taxonomic “box” has utility only if the box is biologically meaningful. 
-In this assay I will argue the infeasibility to classify tailed phages trough a classical (strictly hierarchical) taxonomic 
-paradigm further than the family level.
+In this assay I will argue the infeasibility to classify tailed phages trough a classical (strictly hierarchical) taxonomic paradigm further than the family level.
 
-
-
-
-
-
-
-
-
-
-
-##  Hypothesis
 ##  Development 
+1.-Classical taxonomic classification requiere orthologus sequences to infer relationships.   
+Genome-Based taxonomy is an hypotheses about the evolution of a group of sequences or a gene in particular therefore  requiere orthologus sequences to infer relationships, for example taxonomy based on the 16S rRNA gene (16S) is the most comprehensive and widely used in microbiology today(4) and therefore a taxonomic system based on a single locus analogous to the 16S rDNA in bacteria would be the most straightforward method for classifying phage based on their genomic sequence trough a classical taxonomic paradigm, ergo the formation of new lineages of organisms can be equated to the formation of two species from a single ancestral stock. But phage do not contain a ribosomal sequence that allows them to be classified in different genre and, to date, have not benefited from their own gene-based taxonomic system. Phages even it has been demonstrated that no single gene is found in all phage that can be used as the basis for a classification system. In 2002 Rohwer et al. compared all of the predicted phage encoded proteins (n = 3,981) from 105 completed genomes to each other by using BLASTP. The results are ilustrated in the Figure 1 as a rank abundance curve. There were 21,153 significant hits (E value of <0.1) between the predicted phage proteins. However, no single protein was found in all 105 genomes.    
+![Image of Figura 1](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/figura1.jpg)
+
+
+
+
 ##  Conclusion 
 
 ## References 
 1.-Hatfull GF, Hendrix RW. Bacteriophages and their Genomes. Current opinion in virology. 2011;1(4):298-303. 
 2.-Glazko G, Makarenkov V, Liu J, Mushegian A. Evolutionary history of bacteriophages with double-stranded DNA genomes. Biol Direct. 2007;2:36.
 3.-Lawrence JG, Hatfull GF, Hendrix RW. Imbroglios of Viral Taxonomy: Genetic Exchange and Failings of Phenetic Approaches. Journal of Bacteriology. 2002;184(17):4891-4905. 
+4.-Rohwer F, Edwards R. The Phage Proteomic Tree: a Genome-Based Taxonomy for Phage. Journal of Bacteriology. 2002;184(16):4529-4535. doi:10.1128/JB.184.16.4529-4535.2002.
