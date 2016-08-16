@@ -495,46 +495,24 @@ Para utilizar el ensamblador SPAdes, ingrese a la carpeta que contiene los datos
 
 Con el fin de llevar a cabo un análisis comparativo de los ensambles utilizaremos también el ensamblador MaSuRCA, una vez descargado y descomprimido el archivo correspondiente procedemos ingresar a la carpeta bin y a crear un archivo llamado configuration.txt que contenga lo siguiente: 
 
-# example configuration file 
+    ####example configuration file 
+    DATA
+    ####PE= pe 180 20  /FULL_PATH/frag_1.fastq  /FULL_PATH/frag_2.fastq
+    PE= pe 221.22 36.38  /home/fagolab/Descargas/ensamble/198D_1.fastq  /home/fagolab/Descargas/ensamble/198D_2.fastq
+    PE = s1 217.23 51.00 /home/fagolab/Descargas/ensamble/198D_1_prinseq_good_singletons_YOxe.fastq
+    PE = s2 185.52 56.33 /home/fagolab/Descargas/ensamble/198D_2_prinseq_good_singletons_xRRl.fastq
+    END
 
-# DATA is specified as type {PE,JUMP,OTHER} and 5 fields:
-# 1)two_letter_prefix 2)mean 3)stdev 4)fastq(.gz)_fwd_reads
-# 5)fastq(.gz)_rev_reads. The PE reads are always assumed to be
-# innies, i.e. --->.<---, and JUMP are assumed to be outties
-# <---.--->. If there are any jump libraries that are innies, such as
-# longjump, specify them as JUMP and specify NEGATIVE mean. Reverse reads
-# are optional for PE libraries and mandatory for JUMP libraries. Any
-# OTHER sequence data (454, Sanger, Ion torrent, etc) must be first
-# converted into Celera Assembler compatible .frg files (see
-# http://wgs-assembler.sourceforge.com)
-DATA
-#PE= pe 180 20  /FULL_PATH/frag_1.fastq  /FULL_PATH/frag_2.fastq
-PE= pe 221.22 36.38  /home/fagolab/Descargas/ensamble/198D_1.fastq  /home/fagolab/Descargas/ensamble/198D_2.fastq
-#PE = s1 217.23 51.00 /home/fagolab/Descargas/ensamble/198D_1_prinseq_good_singletons_YOxe.fastq
-#PE = s2 185.52 56.33 /home/fagolab/Descargas/ensamble/198D_2_prinseq_good_singletons_xRRl.fastq
-
-
-END
-
-PARAMETERS
-#this is k-mer size for deBruijn graph values between 25 and 101 are supported, auto will compute the optimal size based on the read data and GC content
-GRAPH_KMER_SIZE = auto
-#set this to 1 for Illumina-only assemblies and to 0 if you have 1x or more long (Sanger, 454) reads, you can also set this to 0 for large data sets with high jumping clone coverage, e.g. >50x
-USE_LINKING_MATES = 1
-#this parameter is useful if you have too many jumping library mates. Typically set it to 60 for bacteria and 300 for the other organisms 
-LIMIT_JUMP_COVERAGE = 300
-#these are the additional parameters to Celera Assembler.  do not worry about performance, number or processors or batch sizes -- these are computed automatically. 
-#set cgwErrorRate=0.25 for bacteria and 0.1<=cgwErrorRate<=0.15 for other organisms.
-CA_PARAMETERS = cgwErrorRate=0.15 ovlMemory=4GB
-#minimum count k-mers used in error correction 1 means all k-mers are used.  one can increase to 2 if coverage >100
-KMER_COUNT_THRESHOLD = 1
-#auto-detected number of cpus to use
-NUM_THREADS = 2
-#this is mandatory jellyfish hash size -- a safe value is estimated_genome_size*estimated_coverage
-JF_SIZE = 60902526
-#this specifies if we do (1) or do not (0) want to trim long runs of homopolymers (e.g. GGGGGGGG) from 3' read ends, use it for high GC genomes
-DO_HOMOPOLYMER_TRIM = 0
-END
+    PARAMETERS
+    GRAPH_KMER_SIZE = auto
+    USE_LINKING_MATES = 1
+    LIMIT_JUMP_COVERAGE = 300
+    CA_PARAMETERS = cgwErrorRate=0.15 ovlMemory=4GB
+    KMER_COUNT_THRESHOLD = 1
+    NUM_THREADS = 8
+    JF_SIZE = 60902526
+    DO_HOMOPOLYMER_TRIM = 0
+    END
 
 ## 5 
 Laboratorio 4: Análisis de Expresión Génica
