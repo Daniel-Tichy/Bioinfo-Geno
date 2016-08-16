@@ -5,14 +5,14 @@ ___
 &nbsp;
 
 # Table of Contents
-1. [Laboratorio 0: Instalación e Introducción a R](#Laboratorio 0: Instalación e Introducción a R)
+1. [Laboratorio 0: Instalación e Introducción a R](#1)
 2. [Example2](#link2)
 3. [Third Example](#link3)
 
 ## link2
 ## link3
 
-
+## 1
 ## Laboratorio 0: Instalación e Introducción a R 
 Para instalar la última versión disponible de R ingrese los siguientes comandos en su consola
 sudo apt-get install r-base
