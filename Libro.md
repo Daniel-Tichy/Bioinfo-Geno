@@ -216,11 +216,37 @@ y también vimos 1 de las muchas estructuras de datos que R usa, que son los vec
 Para terminar esta introducción entederemos como trabajar con estructuras de datos tipo data.frame, para ello es necesario descargar 
 el archivo .csv del siguiente [link](http://www.datacarpentry.org/R-genomics/data/Ecoli_metadata.csv)
 
+Para importar esta tabla a nuestra interfaz de trabajo clickeamos en el botón de "import dataset" de nuestra pestaña de "global envirnment"  o ingresamos el siguiente comando en la consola si descargamos nuestro en un nuestro directorio de trabajo (para conocer tu directorio de trabajo ingresa getwd() a la consola y para configurar uno nuevo ingresa setwd() ingresando como argumento el nuevo directorio de trabajo).
 
+    metadata <- read.csv('Ecoli_metadata.csv')
 
+Este contiene información acerca de una población de Escherichia coli (designada Ara-3), la cual fue cultivada por más de 40.000 generaciones en un medio mínimo limitado en glucosa, este medio estaba suplementado con citrato, el cual E. coli no puede metabolizar bajo las condiciones en que el experimento fue llevado a cabo. La población fue secuenciada a intervalos regulares, la información obtenida reveló que mutantes metabolizadores de citrato aparecieron espontaneamente cerca de la generación 31.0000. Esta metada describe la información de los clones de Ara-3 y los columnas representan  
+sample: nombre del clon 
+generation generación cuando la muestra fue tomada
+clade 	clado basado en una arbol basado en parsimonia 
+strain 	ancestral strain
+cit 	citrate-using mutant status
+run 	archivo de la secuencia de los reads con el id de la muestra correspondiente 
+genome_size 	El tamaño del genoma en Mbp
+
+Podemos verificar las primeras 6 lineas de nuestro data.frame con la función head(), ingrese lo siguiente a su consola: 
+
+    head(metadata)
+
+Pero ¿Que son concretamente los data.frames?
+
+Los data.frame son la estructura de datos de facto para la mayoría de la data tabulada y es la estructura de dato utilizada para hacer estadistica o graficar. 
+
+Un data.frame es una colección de vectores de largo identico, cada vector representa una columna y cada vector puede contener data de diferentes tipos. La función str() descrita anteriormente es muy util para determinar el tipo de data de cada columna.
+
+un data.frame puede ser creado por las funciones read.csv() o read.table(). Por defecto estos convierten las columnas que contienen texto en data de tipo factor, depnediendo en lo que se desee hacer con la data conservar dicho texto como carácteres puede ser deseable, para hacerlo se debe agregar el argumento stringsAsFactors=FALSE a las funciones read.csv() o read.table().
+
+¿y que son los factores?
+
+Los factores son usados para categorizar datos. Los factores pueden estar ordenados o desordenados y son una clase de dsto muy importante para el análisis estadistico y la confección de gráficos. Los factores son guardados como interfers, y tiene etiquetas asociadas con estos intergers únicos, por lo que mientras que los factores se ven y comportan como vectores son realmente intergers(enteros) y hay que ser precavido de no tratarlos como carácteres.
 
 ## 2
-Laboratorio 1: Análisis de secuencias mediante Bioconductor 
+##Laboratorio 1: Análisis de secuencias mediante Bioconductor 
 
 Introducción
 Bioconductor permite el análisis y la comprensión de data genómica generada a partir de HTS. 
@@ -415,7 +441,100 @@ El Ejercicio consistirá en generar una parjea de partidores especificos para la
 > seq1[1:20]                                   # Print out the first 20 letters of the first sequence
 	
 ## 4 
-Laboratorio 3: Ensamble de Genomas 
+##Laboratorio 3: Ensamble de Genomas 
+
+En este práctico Usted va a recibir un set de datos genómicos correspondientes a un genoma bacteriano. Debe "limpiar" las reads, ensamblarlas, comparar los resultados de ese ensamble, y finalmente anotar y visualizar. 
+Etapas en el práctico:  
+- Descargar reads  [aquí](https://www.dropbox.com/s/qmtja3ollqbqcml/reads.zip?dl=0) (1.4 GB)
+- Realizar control de calidad --> cortar extremos 3´ de baja calidad, eliminar reads con N´s, eliminar reads cuyo puntaje de calidad promedio sea menor a cierto umbral, etc. Para lo cual se usará [PrinSeq](http://prinseq.sourceforge.net).  
+- Una vez que las reads están "limpias", puede proceder con el ensamblaje. Para lo cual usará dos herramientas.
+[SPAdes](http://spades.bioinf.spbau.ru) 
+[MaSurCa](http://www.genome.umd.edu/masurca.html)  
+- El siguiente paso es comparar los ensamblajes producidos por ambos programas. Para lo cual utilizará [QUAST](http://quast.bioinf.spbau.ru)  
+- Finalmente, la anotación genómica es lo que le va a dar sentido a esto al definir dónde están los genes, qué funciones codifican y cómo. En este caso usaremos [Prokka](https://github.com/tseemann/prokka) 
+
+####Prinseq
+Desde el link descargaremos la versión "stand alone" que no requerirá más módulos que los incluidos en el paquete base de perl, en caso de no tenerlo, ingresar lo siguiente a la consola de su terminal. 
+
+    sudo apt-get install libjson-perl
+
+Ya instalado perl vamos a la carpeta que contiene el archivo descargado ya descomprimido y utilizamos prinseq para visualizar los datos antes de procesarlos, para ello generamos un archivo .gd 
+
+    perl ruta_script/prinseq-lite.pl -verbose -fastq 198D_1.fastq -fastq2 198D_2.fastq -graph_data 198D.gd -graph_stats ld,gc,qd,ns,pt,ts,aq,de,da,sc,dn 
+    
+Ya generado el archivo .gd es necesario graficarlo para visualizarlo. Para ello ingrese lo siguiente a su terminal:  
+
+    perl ruta_script/prinseq-graphs-noPCA.pl -i 198D.gd -html_all
+    
+Lo cual debería generar un archivo html en la carpeta en donde ejecutó el script, el cual puede ser fácilmente visualizable con cualquier navegador web pre-instalado. al visulizarlo es fácil percatar que existen reads de tamaño inferior a 50 y en el archivo 198_2.fastq una cantidad importante de reads cuyo extremo 3´ presenta una calidad menor a 20, lo que quiere decir un error cada 1000 pares de bases, por lo cual es necesario limpiar el archivo, para ello ingresaremos lo siguiente en nuestra consola del terminal:
+
+    perl ruta_script/prinseq-lite.pl -verbose -fastq 198D_1.fastq -fastq2 198D_2.fastq -min_len 50 -trim_qual_right 20 -trim_qual_window 10 -trim_qual_step 1 
+
+Para visualizar los efectos de nuestro procesamiento debemos generar un nuevo archivo .gd para ello debemos ingresar lo siguiente a nuestro terminal. 
+
+    perl ruta_script/prinseq-lite.pl -verbose -fastq 198D_1_prinseq_good_Yn2j.fastq -fastq2 198D_2_prinseq_good_git9.fastq -graph_data 198D_post.gd -graph_stats ld,gc,qd,ns,pt,ts,aq,de,da,sc,dn
+
+Es importante hacer énfasis que los codigos que agrega prinseq a cada archivo PE y singleton varía así que debe adecuarlo para que contengan el nombre de sus archivos. Ya entendido eso y generado el archivo .gd se debe gráficar denuevo para ello ingresamos lo siguiente al terminal: 
+
+    perl prinseq-graphs-noPCA.pl -i 198D_post.gd -html_all
+    
+Y lo visualizamos con nuestro navegador, si todo se ejecutó como se espera el largo mínimo de nuestros reads debe ser de 50 y no debe observarse la caída en calidad en el extremo 3´ de los reads del archivo 2 previamente observado. 
+
+####SPAdes 
+
+Una vez finalizado el pre-procesamiento de los reads se puede proceder al ensamble, para ello primero debemos descargar el ensamblador SPAdes desde el link entregado en su última versión correspondiente para nuestro equipo. Al momento de realizar este tutorial la versión utilizada fue SPAdes-3.9.0-Linux
+
+Esta versión no requiere instalación, solo depende de que las dependencias necesarias se encuentren instaladas, como por ejemplo Python en una versión compatible con el script de SPAdes. 
+
+Para utilizar el ensamblador SPAdes, ingrese a la carpeta que contiene los datos pre-procesados a ingrese el siguiente comando a su terminal: 
+
+    python ruta_script/SPAdes-3.9.0-Linux/bin/spades.py --pe1-1 198D_1_prinseq_good_Yn2j.fastq --pe1-2 198D_2_prinseq_good_git9.fastq --s1 198D_1_prinseq_good_singletons_YOxe.fastq --s2 198D_2_prinseq_good_singletons_xRRl.fastq --careful -k21,33,55,77,93 -t 2 -o .
+
+
+####MaSuRCA
+
+Con el fin de llevar a cabo un análisis comparativo de los ensambles utilizaremos también el ensamblador MaSuRCA, una vez descargado y descomprimido el archivo correspondiente procedemos ingresar a la carpeta bin y a crear un archivo llamado configuration.txt que contenga lo siguiente: 
+
+# example configuration file 
+
+# DATA is specified as type {PE,JUMP,OTHER} and 5 fields:
+# 1)two_letter_prefix 2)mean 3)stdev 4)fastq(.gz)_fwd_reads
+# 5)fastq(.gz)_rev_reads. The PE reads are always assumed to be
+# innies, i.e. --->.<---, and JUMP are assumed to be outties
+# <---.--->. If there are any jump libraries that are innies, such as
+# longjump, specify them as JUMP and specify NEGATIVE mean. Reverse reads
+# are optional for PE libraries and mandatory for JUMP libraries. Any
+# OTHER sequence data (454, Sanger, Ion torrent, etc) must be first
+# converted into Celera Assembler compatible .frg files (see
+# http://wgs-assembler.sourceforge.com)
+DATA
+#PE= pe 180 20  /FULL_PATH/frag_1.fastq  /FULL_PATH/frag_2.fastq
+PE= pe 221.22 36.38  /home/fagolab/Descargas/ensamble/198D_1.fastq  /home/fagolab/Descargas/ensamble/198D_2.fastq
+#PE = s1 217.23 51.00 /home/fagolab/Descargas/ensamble/198D_1_prinseq_good_singletons_YOxe.fastq
+#PE = s2 185.52 56.33 /home/fagolab/Descargas/ensamble/198D_2_prinseq_good_singletons_xRRl.fastq
+
+
+END
+
+PARAMETERS
+#this is k-mer size for deBruijn graph values between 25 and 101 are supported, auto will compute the optimal size based on the read data and GC content
+GRAPH_KMER_SIZE = auto
+#set this to 1 for Illumina-only assemblies and to 0 if you have 1x or more long (Sanger, 454) reads, you can also set this to 0 for large data sets with high jumping clone coverage, e.g. >50x
+USE_LINKING_MATES = 1
+#this parameter is useful if you have too many jumping library mates. Typically set it to 60 for bacteria and 300 for the other organisms 
+LIMIT_JUMP_COVERAGE = 300
+#these are the additional parameters to Celera Assembler.  do not worry about performance, number or processors or batch sizes -- these are computed automatically. 
+#set cgwErrorRate=0.25 for bacteria and 0.1<=cgwErrorRate<=0.15 for other organisms.
+CA_PARAMETERS = cgwErrorRate=0.15 ovlMemory=4GB
+#minimum count k-mers used in error correction 1 means all k-mers are used.  one can increase to 2 if coverage >100
+KMER_COUNT_THRESHOLD = 1
+#auto-detected number of cpus to use
+NUM_THREADS = 2
+#this is mandatory jellyfish hash size -- a safe value is estimated_genome_size*estimated_coverage
+JF_SIZE = 60902526
+#this specifies if we do (1) or do not (0) want to trim long runs of homopolymers (e.g. GGGGGGGG) from 3' read ends, use it for high GC genomes
+DO_HOMOPOLYMER_TRIM = 0
+END
 
 ## 5 
 Laboratorio 4: Análisis de Expresión Génica
@@ -425,6 +544,7 @@ Laboratorio 5: Metagenómica
 
 ##7
 Laboratorio 6: Genómica de Poblaciones
+
 
 
 
