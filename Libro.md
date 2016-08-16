@@ -266,11 +266,13 @@ El paquete IRanges permite almacenar, organizar secuencialmente y organizar
 rangos de datos de tipo interger como RLE (Run-Length Encoding).  
 
 Para instalar este paquete es necesario ingresar el siguiente comando a la consola de R
-source("https://bioconductor.org/biocLite.R")
-biocLite("IRanges")
+
+    source("https://bioconductor.org/biocLite.R")
+    biocLite("IRanges")
 
 Para más información 
-browseVignettes("IRanges")
+
+    browseVignettes("IRanges")
 
 GenomicRanges
 
@@ -282,11 +284,13 @@ representa un vector que contiene el nombre de la secuencia, el rango, y la hebr
 opción de poder agregar metadata al vector.
 
 Para instalar este paquete es necesario ingresar el siguiente comando a la consola de R
-source("https://bioconductor.org/biocLite.R")
-biocLite("GenomicRanges")
+
+    source("https://bioconductor.org/biocLite.R")
+    biocLite("GenomicRanges")
 
 Para más información 
-browseVignettes("GenomicRanges")
+
+    browseVignettes("GenomicRanges")
 
 
 BioString 
@@ -295,11 +299,13 @@ algoritmos de busqueda de string entre otras utilidades. Todo con el fin de mani
 de secuencias biologicas.
 
 Para instalar este paquete es necesario ingresar el siguiente comando a la consola de R
-source("https://bioconductor.org/biocLite.R")
-biocLite("Biostrings")
+
+    source("https://bioconductor.org/biocLite.R")
+    biocLite("Biostrings")
 
 Para más información 
-browseVignettes("Biostrings")
+
+    browseVignettes("Biostrings")
 
 AnnotationHub 
 Este paquete permite acceso web de manera centralizada a bases de datos como Ensembl para acceder a 
@@ -309,64 +315,73 @@ y fechas de modificación. Los archivos son almacenados temporalmente en el cach
 rápidamente si es necesario. 
 
 Para instalar este paquete es necesario ingresar el siguiente comando a la consola de R
-source("https://bioconductor.org/biocLite.R")
-biocLite("AnnotationHub")
+
+    source("https://bioconductor.org/biocLite.R")
+    biocLite("AnnotationHub")
 
 Para más información 
-browseVignettes("AnnotationHub")
+
+    browseVignettes("AnnotationHub")
 
 -Rsamtools
-Este paquete provee una interface a diferentes herramientas tales como  
-samtools, bcftools y tabix utilities. Para la manipulacipon de archivos de secuencias 
-tipo SAM, FASTA, BCF y tabix
+Este paquete provee una interface a diferentes herramientas tales como  samtools, bcftools y tabix utilities. Para la manipulacipon de archivos de secuencias tipo SAM, FASTA, BCF y tabix
 
 Para instalar este paquete es necesario ingresar el siguiente comando a la consola de R
-source("https://bioconductor.org/biocLite.R")
-biocLite("Rsamtools")
+
+    source("https://bioconductor.org/biocLite.R")
+    biocLite("Rsamtools")
 
 Para más información 
-browseVignettes("Rsamtools")
+
+    browseVignettes("Rsamtools")
 
 Ejercicio 
 
-1. Lo primero que haremos será descargar todas las secuencias de cDNA de Homo sapiens como archivos FASTA desde Ensembl utilizando 
-el paquete AnnotationHub, para lo primero debemos cargar el paquete y crear una variable que nos permita almacenar la informacion 
-lo cual se hará mediante el siguiente comando en consola: 
-library(AnnotationHub)
-ah <- AnnotationHub()
+1. Lo primero que haremos será descargar todas las secuencias de cDNA de Homo sapiens como archivos FASTA desde Ensembl utilizando el paquete AnnotationHub, para lo primero debemos cargar el paquete y crear una variable que nos permita almacenar la informacion lo cual se hará mediante el siguiente comando en consola: 
+
+
+    library(AnnotationHub)
+    ah <- AnnotationHub()
+
 2. Una vez cargado el paquete y la variable creada procederemos a la descarga mediante el siguiente comando en la consola: 
-ah2 <- query(ah, c("fasta", "homo sapiens", "Ensembl"))
-fa <- ah2[["AH18522"]]
-fa
-3.Posteriormente abriremos el archivo descargado para recuperar las secuencias de interés junto con el largo de estas en un archivo 
-FASTA mediante el siguiente comando en consola usando Rsamtools, cuyo paquete debe ser cargado. 
-library(Rsamtools)
-idx <- scanFaIndex(fa)
-idx
+
+
+    ah2 <- query(ah, c("fasta", "homo sapiens", "Ensembl"))
+    fa <- ah2[["AH18522"]]
+    fa
+    
+3.Posteriormente abriremos el archivo descargado para recuperar las secuencias de interés junto con el largo de estas en un archivo FASTA mediante el siguiente comando en consola usando Rsamtools, cuyo paquete debe ser cargado. 
+
+    library(Rsamtools)
+    idx <- scanFaIndex(fa)
+    idx
 4.Finalmente la información obtenida como un objeto Granges mediante el comando getseq()
-En este ejemplo utilizaremos el atributo param como un indicador de sets de DNAstrin
+En este ejemplo utilizaremos el atributo param como un indicador de sets de DNAstring
 Lo cual se hará mediante el siguiente comando en consola. 
-long <- idx[width(idx) > 82000]
-getSeq(fa, param=long)
+
+    long <- idx[width(idx) > 82000]
+    getSeq(fa, param=long)
+
 Lo que se debe observar al final de este ejerccio es lo siguiente 
-##   A DNAStringSet instance of length 7
-##      width seq                                                                  names               
-## [1] 101518 GCAGTCGTGCATTCCCAGCCTCGCCTCGGGTGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000342992
-## [2]  82029 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000460472
-## [3] 109224 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000589042
-## [4] 104301 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000591111
-## [5] 104301 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000615779
-## [6]  82605 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000342175
-## [7]  82404 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000359218
+
+    A DNAStringSet instance of length 7
+    width seq                                                                  names               
+    [1] 101518 GCAGTCGTGCATTCCCAGCCTCGCCTCGGGTGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000342992
+    [2]  82029 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000460472
+    [3] 109224 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000589042
+    [4] 104301 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000591111
+    [5] 104301 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000615779
+    [6]  82605 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000342175
+    [7]  82404 GAGCAGTCGTGCATTCCCAGCCTCGCCTCGGGT...ACAAAATAAAGCAAGCTATCTGCACCTCAAAA ENST00000359218
 
 que corresponde a todas las entradas dentro del archivo con un largo mayor a 82000pb
 
 ## 3 
-Laboratorio 2: Diseño de partidores 
+##Laboratorio 2: Diseño de partidores 
 
 Introducción
 Entre las variadas herramientas que pone a nuestra diposición Bioconductor una de las más usada es el alineamiento multiple y 
-el diseño de partidores. En el presente laboratorio exploraremos herramientas para alineamientos múltiples. 
+el diseño de partidores. En el presente laboratorio exploraremos distintas herramientas para alineamientos múltiples. 
 Los paquetes de Bioconductor que evaluaremos en este primer laboratorio serán los siguientes:
 -seqinR 
 -msa 
@@ -377,45 +392,45 @@ SeqinR es la abreviación de "sequences in R" es un paquete que permite recupera
 distintas bases de datos (GenBank, Swissprot, entre otras)   
 
 Para instalar este paquete es necesario ingresar el siguiente comando a la consola de R
-install.packages("seqinr", repos="http://R-Forge.R-project.org")
 
-La instalación de los paquetes ade4 y ape es recomendada mediante el asistente de instalación de paquetes de Rstudio (ver imagen) 
+    install.packages("seqinr", repos="http://R-Forge.R-project.org")
 
+La instalación de los paquetes ade4 y ape es recomendada mediante el asistente de instalación de paquetes de Rstudio
 Para más información consultar el siguiente enlace 
-http://seqinr.r-forge.r-project.org/seqinr_2_0-7.pdf
 
-Msa 
-Este paquete provee una interface unificada para Bioconductor de distintos algoritmos de alineamento tales como ClustalW, 
-ClustalOmega y Muscle. 
-Estos tres algoritmos se encuentran integrados dentro del paquete por lo cual una vez instalado no se necesita de herramientas externas.
-Estos algoritmos de alineamento multiple están complementados por una función de visualización en pantalla usando el paquete de 
-LaTex TexShade.
+    http://seqinr.r-forge.r-project.org/seqinr_2_0-7.pdf
+
+MSA 
+Este paquete provee una intrface unificada para Bioconductor de distintos algoritmos de alineamento tales como ClustalW, 
+ClustalOmega y Muscle. Estos tres algoritmos se encuentran integrados dentro del paquete por lo cual una vez instalado no se necesita de herramientas externas. Además están complementados por una función de visualización en pantalla usando el paquete de LaTex TexShade.
 
 Para instalar este paquete es necesario ingresar el siguiente comando a la consola de R
-source("https://bioconductor.org/biocLite.R")
-biocLite("msa")
+
+    source("https://bioconductor.org/biocLite.R")
+    biocLite("msa")
 
 Para más información 
-browseVignettes("msa")
+
+    browseVignettes("msa")
 
 DECIPHER 
 Este paquete provee un set de herramientas para trabajar con secuencias biologicas, en la que destaca la función DesignPrimers
-cuyo objetivo es determinar un set de partidores fowards y reverse que amplifiquen unicamente en un grupo de secuencias objetivo pero no 
-en otras, si dicho objetivo es imposible de cumplir la función es capaz de predecir el potencial de amplificación crusada con grupos 
-de secuencias no objetivo.  
+cuyo objetivo es determinar un set de partidores fowards y reverse que amplifiquen unicamente en un grupo de secuencias objetivo pero no las otras ingresadas, si dicho objetivo es imposible de cumplir la función es capaz de predecir el potencial de amplificación crusada con grupos de secuencias no objetivo.
+
 Para instalar este paquete es necesario ingresar el siguiente comando a la consola de R
-source("https://bioconductor.org/biocLite.R")
-biocLite("DECIPHER")
+
+    source("https://bioconductor.org/biocLite.R")
+    biocLite("DECIPHER")
 
 Para más información 
-browseVignettes("DECIPHER")
 
-Ejercicio 
-El Ejercicio consistirá en generar una parjea de partidores especificos para la detección de la toxina termolábil de E. coli ETEC 
-1. Para o cual lo primero que debemos hacer es crear una lista que contenga los ID de las secuencias a recuperar
+    browseVignettes("DECIPHER")
 
-> retrieveseqs <- function(seqnames,acnucdb)
-  {
+Ejercicios
+Como primer ejercicio recuperamos un grupo de secuencias mediante seqinR, para lo cual primero debemos crear la función encargada de llvarla a cabo, para ello ingrese lo siguiente en consola:
+
+    retrieveseqs <- function(seqnames,acnucdb)
+    {
      myseqs <- list()   # Make a list to store the sequences
      require("seqinr")  # This function requires the SeqinR R package
      choosebank(acnucdb)
@@ -431,14 +446,14 @@ El Ejercicio consistirá en generar una parjea de partidores especificos para la
      }
      closebank()
      return(myseqs)
-  }
+     }
 
-> seqnames <- c("AB011677.1")  # Make a vector containing the names of the sequences
-> seqs <- retrieveseqs(seqnames,"genbank")             # Retrieve the sequences and store them in list variable "seqs"
-> length(seqs)                                 # Print out the number of sequences retrieved
- [1] 4
-> seq1 <- seqs[[1]]                            # Get the first sequence
-> seq1[1:20]                                   # Print out the first 20 letters of the first sequence
+Luego procedemos a crear un vector que contenga los códigos UNIPROT de las secuencias que deseamos recuperar desde la base de datos swissprot, las secuencias de estas se almacenarán en la variables seqs. 
+
+    seqnames <- c("P06747", "P0C569", "O56773", "Q5VKP1")  
+    seqs <- retrieveseqs(seqnames,"swissprot")             
+
+
 	
 ## 4 
 ##Laboratorio 3: Ensamble de Genomas 
