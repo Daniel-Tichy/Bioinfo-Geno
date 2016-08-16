@@ -59,7 +59,10 @@ y debería obtener lo siguiente en pantalla:
 
 Posteriormente pasamos a instalar un asistente de R que nos ayudará a programar llamado Rstudio 
 desde el siguiente link:https://www.rstudio.com/products/rstudio/download/
- 
+
+Y descargamos la última versión correspondiente a nuestro sistema operativo, al momento de confeccionar este tutorial 
+dicha versión correspondía a RStudio 0.99.903 - Ubuntu 12.04+/Debian 8+ (64-bit), al ser un archivo .deb bastaría 
+instalarlo mediante doble click al archivo en la carpeta de descarga. 
 
 
 
