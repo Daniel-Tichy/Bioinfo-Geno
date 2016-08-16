@@ -193,19 +193,28 @@ Y para finalizar es necesario remarcar que la data que fue agregada a estos vect
 
 En esta pequeña introducción acabamos de ver 2 de los 6 tipos de data que R usa:  "carácteres" y "numeros". 
 Los otros 4 son:
-
 -."lógicos" Para TRUE y FALSE (data de tipo booleano)
--."integer" Para números enteros  (ejemplo 2L, la L le indica a R que es interger, o en español entero)
--."complejo" Para representar un número real con partes imaginarias (ejemplo 1+4i)
+
+-."integer" Para números enteros  (ejemplo 2L, la L le indica a R que es interger, o en español entero
+
+-."complejo" Para representar un número real con partes imaginarias (ejemplo 1+4i
+
 -."raw" No hay mucho que decir 
 
-y también vimos 1 de las muchas estructuras de datos que R usa, que son los vectores, otras importantes son: 
+y también vimos 1 de las muchas estructuras de datos que R usa, que son los vectores, otras importantes son:
+
 -.Las listas (list)
+
 -.Las matrices(matrix)
+
 .-Los data frames (data.frame) 
+
 .-Los Factores (factor).
 
+####Data.frames
 
+Para terminar esta introducción entederemos como trabajar con estructuras de datos tipo data.frame, para ello es necesario descargar 
+el archivo .csv del siguiente [http://www.datacarpentry.org/R-genomics/data/Ecoli_metadata.csv](http://github.com)
 
 ## 2
 Laboratorio 1: Análisis de secuencias mediante Bioconductor 
