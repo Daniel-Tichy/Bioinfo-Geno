@@ -5,7 +5,7 @@ ___
 &nbsp;
 
 # Table of Contents
-1. [Laboratorio 0: Instalación e Introducción a R ](#Laboratorio 0: Instalación e Introducción a R)
+1. [Laboratorio 0: Instalación e Introducción a R](#Laboratorio 0: Instalación e Introducción a R)
 2. [Example2](#link2)
 3. [Third Example](#link3)
 
