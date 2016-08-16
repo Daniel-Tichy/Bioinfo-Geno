@@ -37,7 +37,7 @@ Guarde los cambios, vuelva a su terminal e ingrese los siguientes comandos en su
   
 Responda si, "Y" o "Yes" para descargar e instalar el paquete que contiene R, su terminal debería mostrar sin errores el progreso de la instalación, para verficiar que la instalación fue correcta ingrese lo siguiente a su consola: 
 
-    usuario@nombre_del_equipo:~$ R
+    R
 
 y debería obtener lo siguiente en pantalla: 
 
@@ -63,6 +63,14 @@ desde el siguiente link:https://www.rstudio.com/products/rstudio/download/
 Y descargamos la última versión correspondiente a nuestro sistema operativo, al momento de confeccionar este tutorial 
 dicha versión correspondía a RStudio 0.99.903 - Ubuntu 12.04+/Debian 8+ (64-bit), al ser un archivo .deb bastaría 
 instalarlo mediante doble click al archivo en la carpeta de descarga. 
+
+Una vez finalizada la instalación volvemos al terminal e ingresamos el siguiente comando 
+
+    rstudio
+
+El programa debería iniciarse y usted debería tener la siguiente imagen de la interfaz gráfica del programa. 
+
+![Image of Figura 1](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/Rstudio imagen.jpg)
 
 
 
