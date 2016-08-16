@@ -17,7 +17,20 @@ ___
 
 ## 1 
 ## Laboratorio 0: Instalación e Introducción a R 
-Para instalar la última versión disponible de R ingrese los siguientes comandos en su consola
+Este Libro está pensando como tutorial para aquellas personas que deseen aprender a hacer uso básico de herramientas bioinformáticas para el análisis de datos biólogicos, ocupando como plataforma un ordenador con sistema operativo Linux, siendo esto último requisito obligatorio para el uso de las herramientas descritas a continuación. 
+
+R es un lenguaje de programación enfocado al análisis estadístico.
+
+Es de uno de los lenguajes más utilizados en investigación por la comunidad estadística, siendo además muy popular en el campo de la minería de datos, la investigación biomédica, la bioinformática y las matemáticas financieras. Esto se debe a la posibilidad de cargar diferentes paquetes con funciones de cálculo o graficos. R es parte del sistema GNU y se distribuye bajo la licencia GNU GPL. Está disponible para los sistemas operativos Windows, Macintosh, Unix y GNU/Linux.
+
+Para instalar la última versión disponible de R primero debe modificar el archivo sources.list que se encuentra en la carpeta /etc/apt en su ordenador con sistema operativo Linuxy agregar lo siguiente 
+
+
+    deb https://https://dirichlet.mat.puc.cl//bin/linux/ubuntu trusty/
+    deb https://http://dirichlet.mat.puc.cl//bin/linux/ubuntu trusty/
+
+
+ingrese los siguientes comandos en su consola
 sudo apt-get install r-base
 sudo apt install r-cran-littler
 sudo apt-get install r-recommended
