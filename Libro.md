@@ -4,15 +4,19 @@ ___
 **Nombre: Daniel Tichy**  
 &nbsp;
 
-# Table of Contents
+# Índice
 1. [Laboratorio 0: Instalación e Introducción a R](#1)
-2. [Example2](#link2)
-3. [Third Example](#link3)
+2. [Laboratorio 1: Análisis de secuencias mediante Bioconductor](#2)
+3. [Laboratorio 2: Diseño de partidores](#3)
+4. [Laboratorio 3: Ensamble de Genomas](#4)
+5. [Laboratorio 4: Análisis de Expresión Génica](#5)
+6. [Laboratorio 5: Metagenómica](#6)
+7. [Laboratorio 6: Genómica de Poblaciones](#7)
 
-## link2
-## link3
 
-## 1 ## Laboratorio 0: Instalación e Introducción a R 
+
+## 1 
+## Laboratorio 0: Instalación e Introducción a R 
 Para instalar la última versión disponible de R ingrese los siguientes comandos en su consola
 sudo apt-get install r-base
 sudo apt install r-cran-littler
