@@ -31,7 +31,7 @@ desde el siguiente link:https://www.rstudio.com/products/rstudio/download/
  
 
 
-
+## 2
 Laboratorio 1: Análisis de secuencias mediante Bioconductor 
 
 Introducción
@@ -147,6 +147,7 @@ Lo que se debe observar al final de este ejerccio es lo siguiente
 
 que corresponde a todas las entradas dentro del archivo con un largo mayor a 82000pb
 
+## 3 
 Laboratorio 2: Diseño de partidores 
 
 Introducción
@@ -225,6 +226,17 @@ El Ejercicio consistirá en generar una parjea de partidores especificos para la
 > seq1 <- seqs[[1]]                            # Get the first sequence
 > seq1[1:20]                                   # Print out the first 20 letters of the first sequence
 	
+## 4 
+Laboratorio 3: Ensamble de Genomas 
+
+## 5 
+Laboratorio 4: Análisis de Expresión Génica
+
+##6 
+Laboratorio 5: Metagenómica
+
+##7
+Laboratorio 6: Genómica de Poblaciones
 
 
 
