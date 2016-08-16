@@ -429,24 +429,24 @@ Para más información
 Ejercicios
 Como primer ejercicio recuperamos un grupo de secuencias mediante seqinR, para lo cual primero debemos crear la función encargada de llevarlo a cabo, para ello ingrese lo siguiente en consola:
 
-    retrieveseqs <- function(seqnames,acnucdb) #Crea la función que utilizaremos luego 
+    retrieveseqs <- function(seqnames,acnucdb) #Crea la función con dos argumentos que daremos luego 
     {myseqs <- list()                          #Crea la lista que contendrá las secuencias temporalmente
-    require("seqinr")                          #Carga  
-    choosebank(acnucdb)
-    for (i in 1:length(seqnames))
+    require("seqinr")                          #Carga el paquete seqinR si es que no está cargado 
+    choosebank(acnucdb)                        #Determina la base de datos a utilizar a partir del argumento dado 
+    for (i in 1:length(seqnames))              #Ciclo para recorrer la lista de codigos de la secuencia a recuperar 
     {
-    seqname <- seqnames[i]
-    print(paste("Retrieving sequence",seqname,"..."))
-    code <-paste("AC=",seqname,sep="")
-    entry<-query(code)                                     
-    sequence <- getSequence(entry$req[[1]])               
-    myseqs[[i]] <- sequence
+    seqname <- seqnames[i]                     #La variable seqname toma el nombre del codigo correspondiente
+    print(paste("Retrieving sequence",seqname,"...")) 
+    code <-paste("AC=",seqname,sep="")         #Crea el codigo para hacer la busqueda en la base de datos    
+    entry<-query(code)                         #Hace la busqueda en la base de datos y guarda la entrada           
+    sequence <- getSequence(entry$req[[1]])    #Extrae la secuencia de la entrada recuperada             
+    myseqs[[i]] <- sequence                    #Guarda las secuencias recuperadas temporalmente
     }
-    closebank()
-    return(myseqs)
+    closebank()                                #Cierra el acceso a la base de datos
+    return(myseqs)                             #Retorna los valores de las secuencias recuperdas 
     }
 
-Luego procedemos a crear un vector que contenga los códigos UNIPROT de las secuencias que deseamos recuperar desde la base de datos swissprot, las secuencias de estas se almacenarán en la variables seqs. 
+Luego procedemos a crear un vector que contenga los códigos UNIPROT de las secuencias que deseamos recuperar desde la base de datos swissprot, las secuencias almacenadas en myseqs se almacenarán en la variables seqs. 
 
     seqnames <- c("P06747", "P0C569", "O56773", "Q5VKP1")  
     seqs <- retrieveseqs(seqnames,"swissprot")             
@@ -455,11 +455,33 @@ Posteriormente creamos un archivo que contenga la información descargada median
 
     write.fasta(seqs, seqnames, file="phosphoproteins.fasta")
 
-Se creará entonces un archivo llamado phosphoproteins.fasta en nuestra carpeta de "Documentos", con este archivo pasaremos a realizar nuestro alineamiento multiple mediante Clustalw2 y MUSCLE
+Se creará entonces un archivo llamado phosphoproteins.fasta en nuestra carpeta que tengamos designada como directorio de trabajo, con este archivo pasaremos a realizar nuestro alineamiento multiple mediante Clustalw2 y MUSCLE, no obstante antes de llevar a cabo dicho ejercicio es necesario recomendar un visualizador liviano llamado Aliview(Alignement Viewer) que trae integrado consigo MUSCLE, para ello debemos descargar el archivo.SH del siguiente [link](http://www.ormbunkar.se/aliview/downloads/linux/linux-version-1.18/aliview.install.run) vaya a la carpeta de descarga, abra un terminal e ingrese el siguiente comando en ella: 
+
+    chmod 777 aliview.install.run
+    sudo ./aliview.install.run 
+
+Esto debería instalar Aliview, de lo contrario instale las dependencias que faltan (JAVA) y vuelva a intentar.
+Una vez instalado Aliview y Muscle abra una terminal en la carpeta que contiene los archivos a alinear e ingrese lo siguiente en ella: 
+
+    muscle -in proteins.fasta -out output.fasta
+    aliview output.fasta
+
+Lo que debería desplegar lo siguiente en su pantalla 
+
+Esto debería desplegar la siguiente imagen su pantalla
+![Image of Figura 2](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/Aliviewv imagen.jpg)
 
 
 
-	
+
+
+
+
+Para instalar ClustalW descargue el archivo correspondiente desde este [link](http://www.clustal.org/download/current/clustalw-2.1-linux-x86_64-libcppstatic.tar.gz), tras descomprimirlo ingrese a la carpeta ejecute lo siguiente en su consola de comando 
+
+    ./clustalw2
+
+
 ## 4 
 ##Laboratorio 3: Ensamble de Genomas 
 
