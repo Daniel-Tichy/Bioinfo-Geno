@@ -23,18 +23,18 @@ R es un lenguaje de programación enfocado al análisis estadístico.
 
 Es de uno de los lenguajes más utilizados en investigación por la comunidad estadística, siendo además muy popular en el campo de la minería de datos, la investigación biomédica, la bioinformática y las matemáticas financieras. Esto se debe a la posibilidad de cargar diferentes paquetes con funciones de cálculo o graficos. R es parte del sistema GNU y se distribuye bajo la licencia GNU GPL. Está disponible para los sistemas operativos Windows, Macintosh, Unix y GNU/Linux.
 
-Para instalar la última versión disponible de R primero debe modificar el archivo sources.list que se encuentra en la carpeta /etc/apt en su ordenador con sistema operativo Linuxy agregar lo siguiente 
+Para instalar la última versión disponible de R primero debe modificar el archivo sources.list que se encuentra en la carpeta /etc/apt en su ordenador con sistema operativo Linuxy, con un editor de texto como gedit y agregar lo siguiente: 
 
 
     deb https://https://dirichlet.mat.puc.cl//bin/linux/ubuntu trusty/
     deb https://http://dirichlet.mat.puc.cl//bin/linux/ubuntu trusty/
 
 
-ingrese los siguientes comandos en su consola
-sudo apt-get install r-base
-sudo apt install r-cran-littler
-sudo apt-get install r-recommended
-sudo apt-get upgrade
+Guarde los cambios, vuelva a su terminal e ingrese los siguientes comandos en su consola
+
+    sudo apt-get update
+    sudo apt-get install r-base 
+  
 Posteriormente pasamos a instalar un asistente de R que nos ayudará a programar llamado Rstudio 
 desde el siguiente link:https://www.rstudio.com/products/rstudio/download/
  
