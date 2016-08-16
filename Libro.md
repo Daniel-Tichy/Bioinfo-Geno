@@ -35,6 +35,28 @@ Guarde los cambios, vuelva a su terminal e ingrese los siguientes comandos en su
     sudo apt-get update
     sudo apt-get install r-base 
   
+Responda si, "Y" o "Yes" para descargar e instalar el paquete que contiene R, su terminal debería mostrar sin errores el progreso de la instalación, para verficiar que la instalación fue correcta ingrese lo siguiente a su consola: 
+
+    usuario@nombre_del_equipo:~$ R
+
+y debería obtener lo siguiente en pantalla: 
+
+    R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+    Copyright (C) 2016 The R Foundation for Statistical Computing
+    Platform: x86_64-pc-linux-gnu (64-bit)
+
+    R es un software libre y viene sin GARANTIA ALGUNA.
+    Usted puede redistribuirlo bajo ciertas circunstancias.
+    Escriba 'license()' o 'licence()' para detalles de distribucion.
+
+    R es un proyecto colaborativo con muchos contribuyentes.
+    Escriba 'contributors()' para obtener más información y
+    'citation()' para saber cómo citar R o paquetes de R en publicaciones.
+
+    Escriba 'demo()' para demostraciones, 'help()' para el sistema on-line de ayuda,
+    o 'help.start()' para abrir el sistema de ayuda HTML con su navegador.
+    Escriba 'q()' para salir de R
+
 Posteriormente pasamos a instalar un asistente de R que nos ayudará a programar llamado Rstudio 
 desde el siguiente link:https://www.rstudio.com/products/rstudio/download/
  
