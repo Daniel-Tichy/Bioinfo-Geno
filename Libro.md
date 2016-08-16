@@ -427,31 +427,36 @@ Para más información
     browseVignettes("DECIPHER")
 
 Ejercicios
-Como primer ejercicio recuperamos un grupo de secuencias mediante seqinR, para lo cual primero debemos crear la función encargada de llvarla a cabo, para ello ingrese lo siguiente en consola:
+Como primer ejercicio recuperamos un grupo de secuencias mediante seqinR, para lo cual primero debemos crear la función encargada de llevarlo a cabo, para ello ingrese lo siguiente en consola:
 
-    retrieveseqs <- function(seqnames,acnucdb)
+    retrieveseqs <- function(seqnames,acnucdb) #Crea la función que utilizaremos luego 
+    {myseqs <- list()                          #Crea la lista que contendrá las secuencias temporalmente
+    require("seqinr")                          #Carga  
+    choosebank(acnucdb)
+    for (i in 1:length(seqnames))
     {
-     myseqs <- list()   # Make a list to store the sequences
-     require("seqinr")  # This function requires the SeqinR R package
-     choosebank(acnucdb)
-     for (i in 1:length(seqnames))
-     {
-        seqname <- seqnames[i]
-        print(paste("Retrieving sequence",seqname,"..."))
-        queryname <- "query2"
-        query <- paste("AC=",seqname,sep="")
-        query(`queryname`,`query`)
-        seq <- getSequence(query2$req[[1]]) # Makes a vector "seq" containing the sequence
-        myseqs[[i]] <- seq
-     }
-     closebank()
-     return(myseqs)
-     }
+    seqname <- seqnames[i]
+    print(paste("Retrieving sequence",seqname,"..."))
+    code <-paste("AC=",seqname,sep="")
+    entry<-query(code)                                     
+    sequence <- getSequence(entry$req[[1]])               
+    myseqs[[i]] <- sequence
+    }
+    closebank()
+    return(myseqs)
+    }
 
 Luego procedemos a crear un vector que contenga los códigos UNIPROT de las secuencias que deseamos recuperar desde la base de datos swissprot, las secuencias de estas se almacenarán en la variables seqs. 
 
     seqnames <- c("P06747", "P0C569", "O56773", "Q5VKP1")  
     seqs <- retrieveseqs(seqnames,"swissprot")             
+
+Posteriormente creamos un archivo que contenga la información descargada mediante la función write.fasta() para ello ingresamos el siguiente comando a nnuestra consola de Rstudio
+
+    write.fasta(seqs, seqnames, file="phosphoproteins.fasta")
+
+Se creará entonces un archivo llamado phosphoproteins.fasta en nuestra carpeta de "Documentos", con este archivo pasaremos a realizar nuestro alineamiento multiple mediante Clustalw2 y MUSCLE
+
 
 
 	
