@@ -134,9 +134,76 @@ Lo que debería entregarle como resultado lo siguiente
 
 Como debe intuir, en el segundo argumento indicamos a la función round cuantos decimales permitir antes de redondear. 
 
-Una vez entendido como indetificar y utilizar una función en R pero antes de empezar a procesar data con estas repasaremos cuales son los tipos de datos que existen en R. 
+Una vez entendido como indetificar y utilizar una función en R pero antes de empezar a procesar data con estas repasaremos cuales son los tipos de datos y las estructuras de estos que existen en R. 
 
 ####Vectores 
+Los vectores son la estructura de dato más común en R y su caballo de trabajo principal, de hecho los primeros ejercicios que realizamos se hicieron con vectores. Los vectores como vimos pueden contener distintos tipos de datos, como por ejemplo números, como ejercicio ingrese lo siguiente en su terminal: 
+
+    glengths <- c(4.6, 3000, 50000)
+    glengths
+
+Al ingresar el nombre del vector como recordará, se mostrará su contenido, en este caso
+
+    [1] 4.6  30000.0  500000.0 
+
+
+Los vectores también pueden contener palabras 
+
+    species <- c("ecoli", "human", "corn")
+    species
+
+Existen funciones dedicadas para interaccionar con vectores, como por ejemplo la función lenght(), que nos permite conocer el número de objetos que contiene un vector. 
+
+    length(glengths)
+    length(species)
+
+Lo que debería entregarle como resultado lo siguiente 
+
+    [1] 3
+    [1] 3
+
+ 
+Tambiénn existe la función class() que entrega como resultado el tipo de data que contiene el vector, por ejemplo, ingrese lo siguiente a su consola: 
+
+    class(glengths)
+    class(species)
+
+Lo que debería entregarle como resultado lo siguiente 
+
+    [1] "numeric"
+    [1] "character"
+
+
+y finalmente la función str() que nos da un vistazo acerca del vector con que estamos trabajando. 
+
+    str(glengths)
+    str(species)
+    
+Lo que debería entregarle como resultado lo siguiente 
+
+    num [1:3] 4.6  30000.0  500000.0 
+    chr [1:3] "ecoli" "human" "corn"
+
+Y para finalizar es necesario remarcar que la data que fue agregada a estos vectores se hizo anteponiendo la letra c antes de la data a agregar, la data puede ser agregada al inicio o final de un vector. 
+
+
+    lengths <- c(glengths, 90) # agregando 90 al final 
+    lengths <- c(30, glengths) # agregando 30 al principio 
+    lengths
+
+En esta pequeña introducción acabamos de ver 2 de los 6 tipos de data que R usa:  "carácteres" y "numeros". 
+Los otros 4 son:
+
+-."lógicos" Para TRUE y FALSE (data de tipo booleano)
+-."integer" Para números enteros  (ejemplo 2L, la L le indica a R que es interger, o en español entero)
+-."complejo" Para representar un número real con partes imaginarias (ejemplo 1+4i)
+-."raw" No hay mucho que decir 
+
+y también vimos 1 de las muchas estructuras de datos que R usa, que son los vectores, otras importantes son: 
+-.Las listas (list)
+-.Las matrices(matrix)
+.-Los data frames (data.frame) 
+.-Los Factores (factor).
 
 
 
