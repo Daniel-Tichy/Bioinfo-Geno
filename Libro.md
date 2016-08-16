@@ -216,6 +216,9 @@ y también vimos 1 de las muchas estructuras de datos que R usa, que son los vec
 Para terminar esta introducción entederemos como trabajar con estructuras de datos tipo data.frame, para ello es necesario descargar 
 el archivo .csv del siguiente [link](http://www.datacarpentry.org/R-genomics/data/Ecoli_metadata.csv)
 
+
+
+
 ## 2
 Laboratorio 1: Análisis de secuencias mediante Bioconductor 
 
