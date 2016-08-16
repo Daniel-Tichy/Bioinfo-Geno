@@ -546,14 +546,18 @@ Y una vez obtenidos los nombres de las especies procedemos a agregarlos a la bas
     Added to table Seqs:  "identifier".
     Time difference of 0.01 secs
 
+Para generar los primers grupo espécificos primero debemos generar k-mers conocidos como "tiles" para ello ingresamos el siguiente comando: 
+
+    tiles <- TileSeqs(dbConn, add2tbl="Tiles", minCoverage=1)
+
+
+Luego generar todos los primers posibles para entre ellos seleccionar aquellos que nos permitan identificar nuestro grupo de interés (Avermitilis) de los demás.
+
+    primers <- DesignPrimers(tiles, identifier="avermitilis",minCoverage=1, minGroupCoverage=1)
     
+Luego indicamos al programa encontrar la mejor combinación de primers Forward y Reverse para nuestro grupo objetivo.
 
-
-
-
-
-
-
+    primers <- DesignPrimers(tiles, identifier="avermitilis", minCoverage=1,minGroupCoverage=1, numPrimerSets=5, maxSearchSize=20)
 
 ## 4 
 ##Laboratorio 3: Ensamble de Genomas 
@@ -581,7 +585,11 @@ Ya generado el archivo .gd es necesario graficarlo para visualizarlo. Para ello 
 
     perl ruta_script/prinseq-graphs-noPCA.pl -i 198D.gd -html_all
     
-Lo cual debería generar un archivo html en la carpeta en donde ejecutó el script, el cual puede ser fácilmente visualizable con cualquier navegador web pre-instalado. al visulizarlo es fácil percatar que existen reads de tamaño inferior a 50 y en el archivo 198_2.fastq una cantidad importante de reads cuyo extremo 3´ presenta una calidad menor a 20, lo que quiere decir un error cada 1000 pares de bases, por lo cual es necesario limpiar el archivo, para ello ingresaremos lo siguiente en nuestra consola del terminal:
+Lo cual debería generar un archivo html en la carpeta en donde ejecutó el script, el cual puede ser fácilmente visualizable con cualquier navegador web pre-instalado. Lo que debería llamarnos la atención es la siguiente figura. 
+
+![Image of Figura 3](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Prinseq_pre.jpg)
+
+Al observarla es fácil percatar que existen reads de tamaño inferior a 50 y en el archivo 198_2.fastq una cantidad importante de reads cuyo extremo 3´ presenta una calidad menor a 20, lo que quiere decir un error cada 1000 pares de bases, por lo cual es necesario limpiar el archivo, para ello ingresaremos lo siguiente en nuestra consola del terminal:
 
     perl ruta_script/prinseq-lite.pl -verbose -fastq 198D_1.fastq -fastq2 198D_2.fastq -min_len 50 -trim_qual_right 20 -trim_qual_window 10 -trim_qual_step 1 
 
@@ -593,7 +601,10 @@ Es importante hacer énfasis que los codigos que agrega prinseq a cada archivo P
 
     perl prinseq-graphs-noPCA.pl -i 198D_post.gd -html_all
     
-Y lo visualizamos con nuestro navegador, si todo se ejecutó como se espera el largo mínimo de nuestros reads debe ser de 50 y no debe observarse la caída en calidad en el extremo 3´ de los reads del archivo 2 previamente observado. 
+Y lo visualizamos con nuestro navegador, si todo se ejecutó como se espera el largo mínimo de nuestros reads debe ser de 50 y no debe observarse la caída en calidad en el extremo 3´ de los reads del archivo 2 previamente observado, en una imagen similar a esta: 
+
+![Image of Figura 4](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Prinseq_post.jpg)
+
 
 ####SPAdes 
 
