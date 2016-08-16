@@ -94,9 +94,9 @@ Lo que significa que usted acaba de crear un objeto que contiene un elemento uni
     # y el valor 5 a la variable b 
     b <- 5
     # Ahora a es 
-    3
+    a
     # Ahora b es 
-    5
+    b
     # y si sumamos a y b 
     a + b
     
@@ -112,7 +112,7 @@ Si realizó la operación correctamente usted debería visualizar lo siguiente:
     # Ahora b es 
     5
     # y si sumamos a y b 
-    a + b
+    8 
 
 
 
