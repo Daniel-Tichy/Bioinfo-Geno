@@ -114,7 +114,29 @@ Si realizó la operación correctamente usted debería visualizar lo siguiente:
     # y si sumamos a y b 
     8 
 
+Una vez entendido como funciona la declaración de variables y la creación de objetos en R pasaremos a ver la funciones. 
+Como en todo lenguaje de programación, en R las funciones se componen de dos partes, la función misma( F() ) y su argumento (A)
+ejemplo: F(A), una función F cuyo argumento es A. Como primer ejecicio digite lo siguiente en su consola: 
 
+    round(3.14159)
+    
+ Lo que debería entregarle como resultado lo siguiente: 
+
+    [1] 3
+
+Lo que acaba de hacer es usar la función, round, que como su nombre indica redondea el número decimal que se le de como primer argumento, no obstante al igual que otras funciones, round puede tomar más de un argumento por ejemplo, ingrese lo siguiente en su consola:
+
+    round(3.14159, digits=2)
+    
+Lo que debería entregarle como resultado lo siguiente 
+
+    [1] 3.14
+
+Como debe intuir, en el segundo argumento indicamos a la función round cuantos decimales permitir antes de redondear. 
+
+Una vez entendido como indetificar y utilizar una función en R pero antes de empezar a procesar data con estas repasaremos cuales son los tipos de datos que existen en R. 
+
+####Vectores 
 
 
 
