@@ -5,16 +5,15 @@ ___
 &nbsp;
 
 # Table of Contents
-1. [Example](#link1)
+1. [Laboratorio 0: Instalación e Introducción a R ](Laboratorio 0: Instalación e Introducción a R)
 2. [Example2](#link2)
 3. [Third Example](#link3)
 
-## link1
 ## link2
 ## link3
 
 
-Laboratorio 0: Instalación e Introducción a R 
+## Laboratorio 0: Instalación e Introducción a R 
 Para instalar la última versión disponible de R ingrese los siguientes comandos en su consola
 sudo apt-get install r-base
 sudo apt install r-cran-littler
