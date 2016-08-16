@@ -1,3 +1,19 @@
+# Libro - Bioinformática genómica
+___
+
+**Nombre: Daniel Tichy**  
+&nbsp;
+
+# Table of Contents
+1. [Example](#example)
+2. [Example2](#example2)
+3. [Third Example](#third-example)
+
+## Example
+## Example2
+## Third Example
+
+
 Laboratorio 0: Instalación e Introducción a R 
 Para instalar la última versión disponible de R ingrese los siguientes comandos en su consola
 sudo apt-get install r-base
