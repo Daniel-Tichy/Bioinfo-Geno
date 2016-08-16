@@ -72,9 +72,50 @@ El programa debería iniciarse y usted debería tener la siguiente imagen de la 
 
 ![Image of Figura 1](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/Rstudio imagen.jpg)
 
+Para Introducirlo a R daremos a continuación algunos ejemplos que le permitirán comprender como funciona, ingrese lo siguiente en la consola de Rstudio (>) 
 
+    3+5
 
+Si ingresó el comando descrito lo siguiente debería aprecer en su consola 
+
+    [1] 8
+
+Lo que significa que usted acaba de crear un objeto que contiene un elemento unidimensional de magnitud 8, correspondiente a la suma de 3 más 5, no obstante como no asociamos este objeto a ninguna variable este objeto no se guardó y no podemos volver a trabajar con él, por lo que procederemos a asignarlo a una variable lo cual se hace con el operador " <- "o " -> " Ingrese lo siguiente a su consola:
+
+    3+5->c
+
+ Si realizó la operación correctamente debería aparecer en la pestaña derecha de la interfaz llamada Global Environment una tabla llamada Values donde en la primera columna tenemos el nombre del objeto recién creado "c" y su valor 8. 
  
+ Para el siguiente ejercicio ingrese lo siguiente a su consola: 
+
+    # Usted puede agregar comentarios a sus futuros scripts de R anteponiendo un gato (#) antes de comenzar a escribir 
+    # Ahora asignaremos el valor 3 a la variable a 
+    a <- 3
+    # y el valor 5 a la variable b 
+    b <- 5
+    # Ahora a es 
+    3
+    # Ahora b es 
+    5
+    # y si sumamos a y b 
+    a + b
+    
+Si realizó la operación correctamente usted debería visualizar lo siguiente: 
+
+    # Usted puede agregar comentarios a sus futuros scripts de R anteponiendo un gato (#) antes de comenzar a escribir 
+    # Ahora asignaremos el valor 3 a la variable a 
+    a <- 3
+    # y el valor 5 a la variable b 
+    b <- 5
+    # Ahora a es 
+    3
+    # Ahora b es 
+    5
+    # y si sumamos a y b 
+    a + b
+
+
+
 
 
 ## 2
