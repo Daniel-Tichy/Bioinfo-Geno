@@ -5,13 +5,13 @@ ___
 &nbsp;
 
 # Table of Contents
-1. [Example](#example)
-2. [Example2](#example2)
-3. [Third Example](#third-example)
+1. [Example](#link1)
+2. [Example2](#link2)
+3. [Third Example](#link3)
 
-## Example
-## Example2
-## Third Example
+## link1
+## link2
+## link3
 
 
 Laboratorio 0: Instalación e Introducción a R 
