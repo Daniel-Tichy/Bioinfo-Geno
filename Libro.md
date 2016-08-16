@@ -207,14 +207,14 @@ y también vimos 1 de las muchas estructuras de datos que R usa, que son los vec
 
 -.Las matrices(matrix)
 
-.-Los data frames (data.frame) 
+-.Los data frames (data.frame) 
 
-.-Los Factores (factor).
+-.Los Factores (factor).
 
 ####Data.frames
 
 Para terminar esta introducción entederemos como trabajar con estructuras de datos tipo data.frame, para ello es necesario descargar 
-el archivo .csv del siguiente [http://www.datacarpentry.org/R-genomics/data/Ecoli_metadata.csv](http://github.com)
+el archivo .csv del siguiente [link](http://www.datacarpentry.org/R-genomics/data/Ecoli_metadata.csv)
 
 ## 2
 Laboratorio 1: Análisis de secuencias mediante Bioconductor 
