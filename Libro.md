@@ -469,17 +469,90 @@ Una vez instalado Aliview y Muscle abra una terminal en la carpeta que contiene 
 Lo que debería desplegar lo siguiente en su pantalla 
 
 Esto debería desplegar la siguiente imagen su pantalla
-![Image of Figura 2](https://raw.githubusercontent.com/Daniel-Tichy/Bioinfo-Geno/master/Aliviewv imagen.jpg)
+![Image of Figura 2](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Aliview_imagen.jpg)
 
-
-
-
-
-
-
-Para instalar ClustalW descargue el archivo correspondiente desde este [link](http://www.clustal.org/download/current/clustalw-2.1-linux-x86_64-libcppstatic.tar.gz), tras descomprimirlo ingrese a la carpeta ejecute lo siguiente en su consola de comando 
+Por otra parte, para instalar ClustalW descargue el archivo correspondiente desde este [link](http://www.clustal.org/download/current/clustalw-2.1-linux-x86_64-libcppstatic.tar.gz), tras descomprimirlo ingrese a la carpeta ejecute lo siguiente en su consola de comando 
 
     ./clustalw2
+    1
+    nombredearchivo de las secuencias recuperdadas 
+    2
+    9
+    4
+    RETURN 
+    1
+
+y luego de darle nombre a los archivos de salida, copie el archivo .phy (proteinas.phy en nuestro caso) en su directorio de trabajo de R y vuelva a Rstudio, ingrese el siguiente comando en su interfaz. 
+
+    virusaln  <- read.alignment(file = "proteinas.phy", format = "phylip")
+    
+Con lo cual acabamos de importar nuestro alineamiento a R mediante la función read.alingment(), una vez dentro se pueden ejecutar distintas funciones de visualización como de análisis, una de las más importantes es dist.alignment() que calcula la distancia entre cada una de las secuencias alineadas. Como ejemplo, ingrese lo siguiente a su consola de Rstudio: 
+
+    virusdist <- dist.alignment(virusaln)  
+    virusdist
+
+Debería obtener lo siguiente: 
+
+                 P0C569     O56773     P06747    
+     O56773      0.4142670                      
+     P06747      0.4678196  0.4714045           
+     Q5VKP1      0.4828127  0.5067117  0.5034130
+
+Y eso concluye nuestra introducción a alineamiento multiple y Rstudio. 
+
+Para finalizar este laboratorio daremos una pequeña introducción de DECIPHER, el cual, si todas las instrucciones se han ejecutado exitosamente debería estar instalado y puede ser cargado en Rstudio mediante la pestaña de paquetes en la esquina inferior derecha. Tras cargarlo, creamos una variable con contenga la ruta al archivo de prueba Streptomyces_ITS_aligned.fas del paquete DECIPHER, en nuestro caso fue desde /home/usuario/R/x86_64-pc-linux-gnu-library/3.3/DECIPHER/extdata con el siguiente comando en la consola de Rstudio: 
+
+    "/home/fagolab/Streptomyces_ITS_aligned.fas"->fas
+    
+Una vez cargado se procede a generar la base datos, por lo cual debemos indicar una ruta para ella o indicar que se creará en memoría, para ello ingresamos el siguiente comando: 
+
+    dbConn <- dbConnect(SQLite(), ":memory:")
+
+Para indicar que crearemos la base de datos en memoría y finalmente la creamos a través del siguiente comando: 
+
+    Seqs2DB(fas, "FASTA", dbConn, "Streptomyces")
+
+Que debería entregar como resultado la siguiente salida en consola: 
+
+    Reading FASTA file chunk 1
+
+    88 total sequences in table Seqs.
+    Time difference of 0.18 secs
+
+Una vez creada la base de datos procedemos a generar los grupos y parsear los identificadores de cada secuencia de la base de datos para identificar más fácilmente cada grupo generado. Para ello ingresamos lo siguiente en consola:  
+
+    desc <- dbGetQuery(dbConn, "select description from Seqs")
+    desc <- unlist(lapply(strsplit(desc$description, "Streptomyces ", fixed=TRUE),function(x) return(x[length(x)])))
+    desc <- gsub("sp. ", "", desc, perl=TRUE)
+    desc <- gsub("sp_", "", desc, perl=TRUE)
+    desc <- unlist(lapply(strsplit(desc, " ", fixed=TRUE), function(x) return(x[1])))
+    unique(desc)
+
+Que debería generar la siguiente salida en su consola: 
+
+    [1] "albus"             "clavuligerus"      "ghanaensis"        "griseoflavus"     
+    [5] "lividans"          "pristinaespiralis" "Mg1"               "SPB78"            
+    [9] "AA4"               "SPB74"             "SirexAA-E"         "scabiei"          
+    [13] "griseus"           "coelicolor"        "cattleya"          "bingchenggensis"  
+    [17] "avermitilis"       "C"                 "Tu6071"           
+
+Y una vez obtenidos los nombres de las especies procedemos a agregarlos a la base de datos, lo cual debería entregar una salida automática como la indicada: 
+
+    Add2DB(data.frame(identifier=desc), dbConn)
+
+    Expression:
+    update or replace Seqs set identifier = :identifier where row_names = :row_names
+
+    Added to table Seqs:  "identifier".
+    Time difference of 0.01 secs
+
+    
+
+
+
+
+
+
 
 
 ## 4 
