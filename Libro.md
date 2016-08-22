@@ -619,26 +619,63 @@ Para utilizar el ensamblador SPAdes, ingrese a la carpeta que contiene los datos
 
 ####MaSuRCA
 
-Con el fin de llevar a cabo un análisis comparativo de los ensambles utilizaremos también el ensamblador MaSuRCA, una vez descargado y descomprimido el archivo correspondiente procedemos ingresar a la carpeta bin y a crear un archivo llamado configuration.txt que contenga lo siguiente: 
+Con el fin de llevar a cabo un análisis comparativo de los ensambles utilizaremos también el ensamblador MaSuRCA, una vez descargado y descomprimido el archivo correspondiente, debemos descargar tambièn el programa [Jellyfish](https://github.com/gmarcais/Jellyfish/releases/download/v2.2.6/jellyfish-2.2.6.tar.gz) el cual es necesario para hacer funcionar el ensamblador MaSurCA, para ello una vez descomprimido, movemos la carpeta resultante al directorio en donde tengamos guardados nuestros demás programas, entramos a la carpeta ya movida y abrimos un terminal donde debemos ingresar el siguiente comando: 
 
-    ####example configuration file 
+    ./configure
+    make
+    sudo make install
+
+Una vez realizado esto procedemos ingresamos a la carpeta bin y copiamos el archivo jellyfish.bin a la carpeta donde tengamos almacenados los datos fastq descargados y abrimos una terminal, en la cual debemos ingresar el siguiente comando: 
+
+    /ruta_completa_MaSuRCA/bin/masurca -g configuration.txt
+
+Al ingresar al archivo creado con cualquier editor de texto deberìa observar algo como esto: 
+
+    # example configuration file 
+    # DATA is specified as type {PE,JUMP,OTHER} and 5 fields:
+    # 1)two_letter_prefix 2)mean 3)stdev 4)fastq(.gz)_fwd_reads
+    # 5)fastq(.gz)_rev_reads. The PE reads are always assumed to be
+    # innies, i.e. --->.<---, and JUMP are assumed to be outties
+    # <---.--->. If there are any jump libraries that are innies, such as
+    # longjump, specify them as JUMP and specify NEGATIVE mean. Reverse reads
+    # are optional for PE libraries and mandatory for JUMP libraries. Any
+    # OTHER sequence data (454, Sanger, Ion torrent, etc) must be first
+    # converted into Celera Assembler compatible .frg files (see
+    # http://wgs-assembler.sourceforge.com)
     DATA
-    ####PE= pe 180 20  /FULL_PATH/frag_1.fastq  /FULL_PATH/frag_2.fastq
-    PE= pe 221.22 36.38  /home/fagolab/Descargas/ensamble/198D_1.fastq  /home/fagolab/Descargas/ensamble/198D_2.fastq
-    PE = s1 217.23 51.00 /home/fagolab/Descargas/ensamble/198D_1_prinseq_good_singletons_YOxe.fastq
-    PE = s2 185.52 56.33 /home/fagolab/Descargas/ensamble/198D_2_prinseq_good_singletons_xRRl.fastq
+    PE= pe 180 20  /FULL_PATH/frag_1.fastq  /FULL_PATH/frag_2.fastq
+    JUMP= sh 3600 200  /FULL_PATH/short_1.fastq  /FULL_PATH/short_2.fastq
+    OTHER=/FULL_PATH/file.frg
     END
-
     PARAMETERS
+    #this is k-mer size for deBruijn graph values between 25 and 101 are supported, auto will compute the optimal size based on the read data and GC content
     GRAPH_KMER_SIZE = auto
-    USE_LINKING_MATES = 1
+    #set this to 1 for Illumina-only assemblies and to 0 if you have 1x or more long (Sanger, 454) reads, you can also set this to 0 for large data sets with high jumping clone coverage, e.g. >50x
+    USE_LINKING_MATES = 0
+    #this parameter is useful if you have too many jumping library mates. Typically set it to 60 for bacteria and 300 for the other organisms 
     LIMIT_JUMP_COVERAGE = 300
+    #these are the additional parameters to Celera Assembler.  do not worry about performance, number or processors or batch sizes -- these are computed automatically. 
+    #set cgwErrorRate=0.25 for bacteria and 0.1<=cgwErrorRate<=0.15 for other organisms.
     CA_PARAMETERS = cgwErrorRate=0.15 ovlMemory=4GB
+    #minimum count k-mers used in error correction 1 means all k-mers are used.  one can increase to 2 if coverage >100
     KMER_COUNT_THRESHOLD = 1
-    NUM_THREADS = 8
-    JF_SIZE = 60902526
+    #auto-detected number of cpus to use
+    NUM_THREADS = 16
+    #this is mandatory jellyfish hash size -- a safe value is estimated_genome_size*estimated_coverage
+    JF_SIZE = 200000000
+    #this specifies if we do (1) or do not (0) want to trim long runs of homopolymers (e.g. GGGGGGGG) from 3' read ends, use it for high GC genomes
     DO_HOMOPOLYMER_TRIM = 0
     END
+
+En este archivo debemos agregar un gato(#) al comienzo de todas las lineas entre DATA y END y agregar la siguiente linea:
+
+    PE= pe 221.22 36.38  /ruta_completa/198D_1.fastq  /ruta_completa/198D_2.fastq
+    
+y cambiar el valor de NUM_THREADS al entre 25% y 50% de los procesadores de su PC. Una vez realizado esto abra una terminal e ingrese los siguientes comandos: 
+
+    /ruta_completa_MaSuRCA/bin/masurca configuration.txt
+    ./assemble.sh
+
 
 ## 5 
 Laboratorio 4: Análisis de Expresión Génica
