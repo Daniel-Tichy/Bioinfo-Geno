@@ -774,7 +774,7 @@ La cual debería abrir la interfaz grárfica de Artemis y deberíamos ser capace
 ![Image of Figura 6](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Artemis.jpg)
 
 y si activa la función Open in DNAPlotter en archivos deberíamos visualizar lo siguiente:
-![Image of Figura 6](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Artemis2.jpg)
+![Image of Figura 7](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Aliview_imagen2.jpg)
 
 
 
