@@ -584,12 +584,22 @@ Ya instalado perl vamos a la carpeta que contiene el archivo descargado ya desco
 Ya generado el archivo .gd es necesario graficarlo para visualizarlo. Para ello ingrese lo siguiente a su terminal:  
 
     perl ruta_script/prinseq-graphs-noPCA.pl -i 198D.gd -html_all
-    
-Lo cual debería generar un archivo html en la carpeta en donde ejecutó el script, el cual puede ser fácilmente visualizable con cualquier navegador web pre-instalado. Lo que debería llamarnos la atención es la siguiente figura. 
+
+Lo cual debería generar un archivo html en la carpeta en donde ejecutó el script, el cual puede ser fácilmente visualizable con cualquier navegador web pre-instalado, visualice el archivo html generado.
+
+Los primeros gráficos que nos reportará prinseq corresponden a un gráfico de columna de la distribución de largo de los reads en los archivos de salida del secuenciador, en donde el eje X representará el tamaño del read y el eje Y la cantidad de reads con dicho tamaño, junto con una pequeña estadistica. 
+![Image of Figura 4](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Prinseq_L1.jpg)
+
+De esta imagen, en lo que debemos centrar nuestra atención, además de las muy diferentes tendencias entre los archivos 1 y 2, siendo la del archivo 1 claramente de mayor calidad, es que para ambos archivos se reporta un largo mínimo de read de 35 pares de bases, para evitar que SPADES cometa errores con reads tan pequeños será necesario eliminarnos de nuestros archivos al momento de "limpiarlos".  
+
+Luego tenemos un gráfico del puntaje de calidad para cada posición de todos los reads expresados en un boxplot para el archivo 1 donde se puede pareciar que algunos reads en su extremo 3´ contienen nucleotidos de baja calidad (menor a 20). pero que la gran mayoría de los reads de acuerdo al gráfico de columna inmediatamente luego de este muestra que en promedio la mayoría de los reads son de buena calidad, dado el desplazamiento hacia la derecha mostrado por la campana de dicho gráfico.  
+![Image of Figura 5](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Prinseq_L2.jpg)
+
+Por otro lado el gráfico del puntaje de calidad para el archivo 2 debería llamarnos la atención, ya que un proporción importante de los nucleótidos que componen los reads de este archivo tienen un puntaje de calidad bajo, así como lo muestra la campana de distribución asociada a esta figura. 
 
 ![Image of Figura 3](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Prinseq_pre.jpg)
 
-Al observarla es fácil percatar que existen reads de tamaño inferior a 50 y en el archivo 198_2.fastq una cantidad importante de reads cuyo extremo 3´ presenta una calidad menor a 20, lo que quiere decir un error cada 1000 pares de bases, por lo cual es necesario limpiar el archivo, para ello ingresaremos lo siguiente en nuestra consola del terminal:
+Una calidad menor a 20, quiere decir un error cada 100 pares de bases, por lo cual es necesario limpiar el archivo, para ello y tomando en consideración el tamaño de los reads ingresaremos lo siguiente en nuestra consola del terminal:
 
     perl ruta_script/prinseq-lite.pl -verbose -fastq 198D_1.fastq -fastq2 198D_2.fastq -min_len 50 -trim_qual_right 20 -trim_qual_window 10 -trim_qual_step 1 
 
@@ -616,6 +626,16 @@ Para utilizar el ensamblador SPAdes, ingrese a la carpeta que contiene los datos
 
     python ruta_script/SPAdes-3.9.0-Linux/bin/spades.py --pe1-1 198D_1_prinseq_good_Yn2j.fastq --pe1-2 198D_2_prinseq_good_git9.fastq --s1 198D_1_prinseq_good_singletons_YOxe.fastq --s2 198D_2_prinseq_good_singletons_xRRl.fastq --careful -k21,33,55,77,93 -t 2 -o .
 
+El cual una vez termine de correr debería entregar una carpeta en el directorio desde donde se ejecutó que contenga los siguientes archivos: 
+
+    assembly_graph.fastg  input_dataset.yaml  misc                spades.log
+    before_rr.fasta       K21                 mismatch_corrector  tmp
+    contigs.fasta         K33                 params.txt          warnings.log
+    contigs.paths         K55                 quast_test_output
+    corrected             K77                 scaffolds.fasta
+    dataset.info          K93                 scaffolds.paths
+
+De esta lista de archivos el que debe interesarnos más es el scaffolds.fasta, el cual corresponde a una sobrelapamiento de contigs (que a su vez son un sobrelapamiento de los reads) pero a diferencia de a estos últimos organizados y separados por gaps de largo conocido. 
 
 ####MaSuRCA
 
@@ -675,6 +695,8 @@ y cambiar el valor de NUM_THREADS al entre 25% y 50% de los procesadores de su P
 
     /ruta_completa_MaSuRCA/bin/masurca configuration.txt
     ./assemble.sh
+
+####Quast
 
 
 ## 5 
