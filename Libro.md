@@ -577,7 +577,7 @@ Desde el link descargaremos la versión "stand alone" que no requerirá más mó
 
     sudo apt-get install libjson-perl
 
-Ya instalado perl vamos a la carpeta que contiene el archivo descargado ya descomprimido y utilizamos prinseq para visualizar los datos antes de procesarlos, para ello generamos un archivo .gd 
+Ya instalado perl vamos a la carpeta que contiene los archivos con las secuencias ya descargados y descomprimidos y utilizamos prinseq para visualizar los datos antes de procesarlos, para ello generamos un archivo .gd abriendo un terminal en la misma carpeta e ingresando el siguiente comando:
 
     perl ruta_script/prinseq-lite.pl -verbose -fastq 198D_1.fastq -fastq2 198D_2.fastq -graph_data 198D.gd -graph_stats ld,gc,qd,ns,pt,ts,aq,de,da,sc,dn 
     
@@ -697,7 +697,96 @@ y cambiar el valor de NUM_THREADS al entre 25% y 50% de los procesadores de su P
     ./assemble.sh
 
 ####Quast
+Al igual que prinseq los únicoss pasos previos necesarios para ejecutar QUAST son descargar y descomprimir el archivo que contiene la última versión del software desde el link dado previamente, colocar los ensambles generados por SPADES y MaSuRCA en una misma carpeta, abrir la terminal y ejecutar el siguiente comando.
 
+    ./quast.py -o ruta_carpeta_actual ruta_completa/ensamble_SPADES.fasta \ruta_completa/ensamble_MaSuRCA.fasta 
+
+Lo cual debería generar una carpeta en la carpeta actual que contenga los siguientes archivos.  
+
+    basic_stats     quast.log    report.tsv             transposed_report.tsv
+    icarus.html     report.html  report.txt             transposed_report.txt
+    icarus_viewers  report.pdf   scaffolds.fasta
+    report.tex   transposed_report.tex
+
+Siendo el archivo report.pdf el que más nos interesa. 
+
+####Prokka 
+La instalación de prokka es algo distinta a la de los programas anteriores, para ello debemos tener instalado primero Git en nuestro ordenador, lo cual además permite trabajar de manera más expedita con GitHub, para ello abrimos un terminal e ingrdamos la siguiente linea de comando: 
+
+    sudo apt-get update
+    sudo apt-get install git
+
+Posterior a esto debemos instalar otras dependencias que son necesarios para el funcionamiento de prokka para ello ingresamos la siguiente linea de comando a nuestro terminal: 
+
+    sudo apt-get install libdatetime-perl libxml-simple-perl libdigest-md5-perl bioperl
+
+Una vez instalado Git y las depdencias procedemos a abrir una terminal en la carpeta donde deseamos que esté instalado prokka, luego ingresamos la siguiente linea de comando: 
+
+    git clone https://github.com/tseemann/prokka.git
+    ls prokka
+
+Lo cual debería entregar un output como el siguiente: 
+
+    bin       db   mydir    perl5      binaries  doc  README.md
+
+Posteriormente procedemos a indexar las bases de datos que descargamos junto a prokka ingresando la siguiente linea de comando:
+
+    prokka/bin/prokka --setupdb
+ 
+Finalmente para comprbar que prokka esté correctamente instalado ingresamos las siguientes lineas de comando: 
+
+    cd prokka
+    bin/prokka --version
+    
+Lo cual debería entregar un output como el siguiente:
+
+    prokka 1.12-beta
+
+Por último y el objetivo de todo esto que consiste en ejecutar Prokka para que prediga y anote los genes en los ensambles que generamos, abrimos la carpeta que contiene nuestros ensambles y abrimos nuestra terminal para ingresar la siguiente linea de comando para cada uno de nuestros ensambles: 
+
+    /ruta_completa/bin/prokka --outdir mydir --prefix mygenome_MaSuRCA_o_SPADESnombre_ensamble_MaSuRCA_o_SPADES.fasta
+    
+Lo cual debería entregar un output como este: 
+
+    mygenome.err  mygenome.fna  mygenome.gff  mygenome.tbl
+    mygenome.faa  mygenome.fsa  mygenome.log  mygenome.txt
+    mygenome.ffn  mygenome.gbk  mygenome.sqn
+
+Siendo los archivos .gbk y .txt los que más nos importan, en particular el último al abrirlo con un editor de texto debería contener información similar a esta: 
+
+    organism: -----
+    contigs: 449
+    bases: 7129801
+    tRNA: 63
+    tmRNA: 1
+    CDS: 6423
+
+####Artemis 
+Por el momento lo más seguro es que te encuentres bastante decepcionado con el output que has obtenido tras tanto trabajo, esto es debido a que no hemos sido capaces de visualizar correctamente nuestros resultados, por lo que mediante el programa Artemis los graficaremos, para ello abra la terminal e ingrese la siguiente linea de comando: 
+
+    sudo apt install artemis
+    
+Tras lo cual podremos ejecutar artemis abriendo una terminal en la carpeta mydir ( la que contiene los archivos de salida de prokka) e ingresar la siguiente linea de comando: 
+
+    art mygenome.gff
+    
+La cual debería abrir la interfaz grárfica de Artemis y deberíamos ser capaces de ver algo así
+![Image of Figura 6](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Artemis.jpg)
+
+y si activa la función Open in DNAPlotter en archivos deberíamos visualizar lo siguiente:
+![Image of Figura 6](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Artemis2.jpg)
+
+
+
+
+
+
+
+
+    
+    
+
+               
 
 ## 5 
 Laboratorio 4: Análisis de Expresión Génica
