@@ -9,8 +9,8 @@ ___
 2. [Laboratorio 1: Análisis de secuencias mediante Bioconductor](#2)
 3. [Laboratorio 2: Diseño de partidores](#3)
 4. [Laboratorio 3: Ensamble de Genomas](#4)
-5. [Laboratorio 4: Filogenética](#5)
-6. [Laboratorio 5: Análisis de Expresión Génica](#6)
+5. [Laboratorio 4: Análisis de Expresión Génica](#5)
+6. [Laboratorio 5: Metagenómica](#6)
 7. [Laboratorio 6: Genómica de Poblaciones](#7)
 
 
@@ -903,18 +903,16 @@ y si activa la función Open in DNAPlotter en archivos deberíamos visualizar lo
 ![Image of Figura 7](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Aliview_imagen2.jpg)
 
 ## 5 
-Laboratorio 4: Filogenética? 
-https://bioconductor.org/packages/3.3/bioc/html/phyloseq.html
-
-
-##6 
-Laboratorio 5: Análisis de Expresión Génica
+Laboratorio 4: Análisis de Expresión Génica 
 http://www.gettinggeneticsdone.com/2015/12/tutorial-rna-seq-differential.html
 http://www.bioconductor.org/help/workflows/rnaseqGene/
 http://www.nathalievilla.org/doc/pdf/tutorial-rnaseq.pdf
 https://github.com/crazyhottommy/RNA-seq-analysis
 
-
+##6 
+Laboratorio 5: Metagenómica 
+https://bioconductor.org/packages/3.3/bioc/html/phyloseq.html
+https://www.dropbox.com/s/7xzfr744rig1qze/datos_lab.zip?dl=0
 
 ##7
 Laboratorio 6: Genómica de Poblaciones
