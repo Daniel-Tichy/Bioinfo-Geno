@@ -908,11 +908,14 @@ http://www.gettinggeneticsdone.com/2015/12/tutorial-rna-seq-differential.html
 http://www.bioconductor.org/help/workflows/rnaseqGene/
 http://www.nathalievilla.org/doc/pdf/tutorial-rnaseq.pdf
 https://github.com/crazyhottommy/RNA-seq-analysis
+Pipeline para análisis de expresión diferencial de datos utilizando EdgeR O Deseq
+
 
 ##6 
 Laboratorio 5: Metagenómica 
 https://bioconductor.org/packages/3.3/bioc/html/phyloseq.html
 https://www.dropbox.com/s/7xzfr744rig1qze/datos_lab.zip?dl=0
+http://f1000research.com/articles/5-1492/v1
 
 ##7
 Laboratorio 6: Genómica de Poblaciones
