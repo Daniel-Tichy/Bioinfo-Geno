@@ -767,7 +767,25 @@ y cambiar el valor de NUM_THREADS al entre 25% y 50% de los procesadores de su P
     ./assemble.sh
 
 ####Quast
-Al igual que prinseq los únicoss pasos previos necesarios para ejecutar QUAST son descargar y descomprimir el archivo que contiene la última versión del software desde el link dado previamente, colocar los ensambles generados por SPADES y MaSuRCA en una misma carpeta, abrir la terminal y ejecutar el siguiente comando.
+Al igual que prinseq la instalación para ejecutar QUAST es muy sencilla, ademàs de descargar y descomprimir el archivo que contiene la última versión del software desde el link dado previamente, se deben descargar ciertos paquetes para que el programa funcione correctamente, estos son un compilador de Java (javac) y la libreria matplotlib de Python.
+para ello abra su terminal e ingrese las siguientes lineas de comando: 
+
+    sudo apt-get install python-matplotlib
+    sudo apt-get install javac
+
+Luego colocar la carpeta descomprimida de Quast en el directorio de su elección, ingresar a la carpeta, abrir una terminal e ingresar la siguiente linea de comando: 
+
+
+    python quast.py --test
+    
+Lo cual deberìa entregarle un output bastante grande pero que finalice con: 
+
+    Thank you for using QUAST!
+
+    TEST PASSED!
+
+
+Tras lo cual podemos colocar los ensambles generados por SPADES y MaSuRCA en una misma carpeta, abrir la terminal y ejecutar el siguiente comando.
 
     ./quast.py -o ruta_carpeta_actual ruta_completa/ensamble_SPADES.fasta \ruta_completa/ensamble_MaSuRCA.fasta 
 
