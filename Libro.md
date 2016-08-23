@@ -639,7 +639,8 @@ Etapas en el práctico:
 - Una vez que las reads están "limpias", puede proceder con el ensamblaje. Para lo cual usará dos herramientas.
 [SPAdes](http://spades.bioinf.spbau.ru) 
 [MaSurCa](http://www.genome.umd.edu/masurca.html)  
-- El siguiente paso es comparar los ensamblajes producidos por ambos programas. Para lo cual utilizará [QUAST](http://quast.bioinf.spbau.ru)  
+- Para determinar a que organismo corresponden los ensambles generados usaremos la herramienta [MLST](https://github.com/tseemann/mlst) con el fin de determinar si existe un genoma de referencia para el siguiente paso. 
+- El siguiente paso consiste en comparar los ensamblajes producidos por ambos programas. Para lo cual utilizará [QUAST](http://quast.bioinf.spbau.ru)  
 - Finalmente, la anotación genómica es lo que le va a dar sentido a esto al definir dónde están los genes, qué funciones codifican y cómo. En este caso usaremos [Prokka](https://github.com/tseemann/prokka) 
 
 ####Prinseq
@@ -765,6 +766,31 @@ y cambiar el valor de NUM_THREADS al entre 25% y 50% de los procesadores de su P
 
     /ruta_completa_MaSuRCA/bin/masurca configuration.txt
     ./assemble.sh
+
+Si todo funcionó correctamente los resultados de su ensamble (contigs y scaffolds) se encuentran dentro de la carpeta en que ejectó la anterior linea de comando en la siguiente ruta y con lo siguientes nombres:
+
+    CA/10-gapclose/genome.ctg.fasta
+    CA/10-gapclose/genome.scf.fasta
+    
+####MLST
+La instalación de MLST es algo distinta a la de los programas anteriores, para ello debemos tener instalado primero Git en nuestro ordenador, lo cual además permite trabajar de manera más expedita con GitHub, para ello abrimos un terminal e ingrsamos la siguiente linea de comando: 
+
+    sudo apt-get update
+    sudo apt-get install git
+
+Posterior a esto debemos instalar otras dependencias que son necesarios para el funcionamiento de MLST para ello ingresamos las siguientes lineas de comando a nuestro terminal: 
+
+    sudo apt-get install libmoo-perl liblist-moreutils-perl
+    sudo apt-get install ncbi-blast+
+    
+Una vez instalado Git y las depdencias procedemos a abrir una terminal en la carpeta donde deseamos que esté instalado MLST, luego ingresamos la siguiente linea de comando: 
+
+    git clone https://github.com/tseemann/mlst.git
+    ls mlst
+
+Lo cual debería entregar un output como el siguiente: 
+
+
 
 ####Quast
 Al igual que prinseq la instalación para ejecutar QUAST es muy sencilla, ademàs de descargar y descomprimir el archivo que contiene la última versión del software desde el link dado previamente, se deben descargar ciertos paquetes para que el programa funcione correctamente, estos son un compilador de Java (javac) y la libreria matplotlib de Python.
