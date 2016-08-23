@@ -792,8 +792,17 @@ Lo cual debería entregar un output como el siguiente:
 
     bin  db  LICENSE  perl5  README.md  scripts
 
+Si todo ha funcionado correctamente deberìamos ser capaces de ingresar a la carpeta que contiene el ensamble de SPADES (scaffolds) y ejecutar la siguientel linea de comando:
 
+    /ruta_completa_script/bin/mlst nombre_scaffold.fasta
+    
+Lo cual deberìa entregar un output como el siguiente: 
 
+    scaffolds.fasta	pfluorescens	-	glnS(-)	gyrB(-)	ileS(~75)	nuoD(~75)	recA(72?)	rpoB(~67)	rpoD(~64)
+
+Siendo nuestra especie en cuestión Pseudomona fluorescens, cuyo genoma de referencia puede descargarse de [aquì](http://www.ncbi.nlm.nih.gov/nuccore/CP003150.1) 
+
+Este archivo .fasta será muy importante al momento de realizar la comparación de los ensambles con QUAST 
 
 
 ####Quast
@@ -804,7 +813,6 @@ para ello abra su terminal e ingrese las siguientes lineas de comando:
     sudo apt-get install javac
 
 Luego colocar la carpeta descomprimida de Quast en el directorio de su elección, ingresar a la carpeta, abrir una terminal e ingresar la siguiente linea de comando: 
-
 
     python quast.py --test
     
@@ -817,7 +825,7 @@ Lo cual deberìa entregarle un output bastante grande pero que finalice con:
 
 Tras lo cual podemos colocar los ensambles generados por SPADES y MaSuRCA en una misma carpeta, abrir la terminal y ejecutar el siguiente comando.
 
-    ./quast.py -o ruta_carpeta_actual ruta_completa/ensamble_SPADES.fasta \ruta_completa/ensamble_MaSuRCA.fasta 
+    /ruta_completa/quast.py -o . ensamble_SPADES.fasta \ ensamble_MaSuRCA.fasta \ -R genoma_referencia.fasta  
 
 Lo cual debería generar una carpeta en la carpeta actual que contenga los siguientes archivos.  
 
