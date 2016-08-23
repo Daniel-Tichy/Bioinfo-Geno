@@ -9,8 +9,8 @@ ___
 2. [Laboratorio 1: Análisis de secuencias mediante Bioconductor](#2)
 3. [Laboratorio 2: Diseño de partidores](#3)
 4. [Laboratorio 3: Ensamble de Genomas](#4)
-5. [Laboratorio 4: Análisis de Expresión Génica](#5)
-6. [Laboratorio 5: Metagenómica](#6)
+5. [Laboratorio 4: Filogenética](#5)
+6. [Laboratorio 5: Análisis de Expresión Génica](#6)
 7. [Laboratorio 6: Genómica de Poblaciones](#7)
 
 
@@ -559,6 +559,76 @@ Luego indicamos al programa encontrar la mejor combinación de primers Forward y
 
     primers <- DesignPrimers(tiles, identifier="avermitilis", minCoverage=1,minGroupCoverage=1, numPrimerSets=5, maxSearchSize=20)
 
+Ahora cada fila de la variable primers contiene solo un par de primers foward y reverse, si visualizamos el out mediante la siguiente linea de comando en nuestra consola de Rstudio: 
+
+    head(primers)
+    
+Deberìamos observar que cada pareja de partidores solo amplifica S. avermitilis y ninguna otra especie, como queda de manifiesto dado que la columna de mismatches està vacía.
+
+    identifier start_forward start_reverse product_size start_aligned_forward
+    1 avermitilis           245           326           82                   247
+    2 avermitilis           249           326           78                   248
+    3 avermitilis           245           325           81                   247
+    4 avermitilis           249           325           77                   248
+    5 avermitilis           245           328           84                   247
+    start_aligned_reverse permutations_forward permutations_reverse score_forward
+    1                   351                    1                    1             0
+    2                   351                    1                    1             0
+    3                   350                    1                    1             0
+    4                   350                    1                    1             0
+    5                   353                    1                    1             0
+    score_reverse score_set         forward_primer.1 forward_primer.2
+    1  -3.64000....         0 CGTTGATTATTCGGCACACTCGAC             <NA>
+    2  -3.64000....         0    GATTATTCGGCACACTCGACC             <NA>
+    3  -4.06252....         0 CGTTGATTATTCGGCACACTCGAC             <NA>
+    4  -4.06252....         0    GATTATTCGGCACACTCGACC             <NA>
+    5  -0.00036....         0 CGTTGATTATTCGGCACACTCGAC             <NA>
+    forward_primer.3 forward_primer.4  reverse_primer.1 reverse_primer.2
+    1             <NA>             <NA> ACCCTCGCCCTCCCATG             <NA>
+    2             <NA>             <NA> ACCCTCGCCCTCCCATG             <NA>
+    3             <NA>             <NA> CCCTCGCCCTCCCATGT             <NA>
+    4             <NA>             <NA> CCCTCGCCCTCCCATGT             <NA>
+    5             <NA>             <NA> ACACCCTCGCCCTCCCA             <NA>
+    reverse_primer.3 reverse_primer.4 forward_efficiency.1 forward_efficiency.2
+    1             <NA>             <NA>         0.954290....                   NA
+    2             <NA>             <NA>         0.815524....                   NA
+    3             <NA>             <NA>         0.954290....                   NA
+    4             <NA>             <NA>         0.815524....                   NA
+    5             <NA>             <NA>         0.954290....                   NA
+    forward_efficiency.3 forward_efficiency.4 reverse_efficiency.1
+    1                   NA                   NA         0.944266....
+    2                   NA                   NA         0.944266....
+    3                   NA                   NA         0.925497....
+    4                   NA                   NA         0.925497....
+    5                   NA                   NA         0.969813....
+    reverse_efficiency.2 reverse_efficiency.3 reverse_efficiency.4
+    1                   NA                   NA                   NA
+    2                   NA                   NA                   NA
+    3                   NA                   NA                   NA
+    4                   NA                   NA                   NA
+    5                   NA                   NA                   NA
+    7
+    forward_coverage.1 forward_coverage.2 forward_coverage.3 forward_coverage.4
+    1                  1                 NA                 NA                 NA
+    2                  1                 NA                 NA                 NA
+    3                  1                 NA                 NA                 NA
+    4                  1                 NA                 NA                 NA
+    5                  1                 NA                 NA                 NA
+    reverse_coverage.1 reverse_coverage.2 reverse_coverage.3 reverse_coverage.4
+    1                  1                 NA                 NA                 NA
+    2                  1                 NA                 NA                 NA
+    3                  1                 NA                 NA                 NA
+    4                  1                 NA                 NA                 NA
+    5                  1                 NA                 NA                 NA
+    mismatches_forward mismatches_reverse mismatches_set
+    1
+    2
+    3
+    4
+    5
+ 
+¡Hemos logrado generar nuestra pareja de partidores grupo especifico!
+
 ## 4 
 ##Laboratorio 3: Ensamble de Genomas 
 
@@ -776,27 +846,23 @@ La cual debería abrir la interfaz grárfica de Artemis y deberíamos ser capace
 y si activa la función Open in DNAPlotter en archivos deberíamos visualizar lo siguiente:
 ![Image of Figura 7](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/Aliview_imagen2.jpg)
 
-
-
-
-
-
-
-
-    
-    
-
-               
-
 ## 5 
-Laboratorio 4: Análisis de Expresión Génica
+Laboratorio 4: Filogenética? 
+https://bioconductor.org/packages/3.3/bioc/html/phyloseq.html
+
 
 ##6 
-Laboratorio 5: Metagenómica
+Laboratorio 5: Análisis de Expresión Génica
+http://www.gettinggeneticsdone.com/2015/12/tutorial-rna-seq-differential.html
+http://www.bioconductor.org/help/workflows/rnaseqGene/
+http://www.nathalievilla.org/doc/pdf/tutorial-rnaseq.pdf
+https://github.com/crazyhottommy/RNA-seq-analysis
+
+
 
 ##7
 Laboratorio 6: Genómica de Poblaciones
-
+http://membres-timc.imag.fr/Olivier.Francois/tutoRstructure.pdf
 
 
 
