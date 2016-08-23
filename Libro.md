@@ -790,6 +790,10 @@ Una vez instalado Git y las depdencias procedemos a abrir una terminal en la car
 
 Lo cual debería entregar un output como el siguiente: 
 
+    bin  db  LICENSE  perl5  README.md  scripts
+
+
+
 
 
 ####Quast
