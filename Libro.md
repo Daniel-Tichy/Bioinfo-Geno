@@ -834,7 +834,8 @@ Lo cual debería generar una carpeta en la carpeta actual que contenga los sigui
     icarus_viewers  report.pdf   scaffolds.fasta
     report.tex   transposed_report.tex
 
-Siendo el archivo report.pdf el que más nos interesa. 
+Siendo el archivo report.pdf el que más nos interesa. El cual al visualizarlo debería entregarnos una tabla similar a la siguiente 
+![imagen7](https://github.com/Daniel-Tichy/Bioinfo-Geno/blob/master/reporte.jpg) 
 
 ####Prokka 
 La instalación de prokka es algo distinta a la de los programas anteriores, para ello debemos tener instalado primero Git en nuestro ordenador, lo cual además permite trabajar de manera más expedita con GitHub, para ello abrimos un terminal e ingrdamos la siguiente linea de comando: 
